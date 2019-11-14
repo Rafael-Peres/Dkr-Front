@@ -1,18 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro')
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
-  * {
-    padding: 0;
-    margin: 0;
-    outline: 0;
-    box-sizing: border-box
-  }
-
+ 
   body {
-    background: #353940;
-    color: #FFF
+    background: #DCDCDC;
+    color: #FFF;
     font-family: 'Source Sans Pro', sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
@@ -25,4 +19,4 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-`
+`;
