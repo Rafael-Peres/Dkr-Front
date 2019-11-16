@@ -77,7 +77,7 @@ export default function SignIn() {
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            Recuperar Senha
+            Alterar Senha
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -85,33 +85,35 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="user"
-              label="Usuário"
-              name="user"
-              autoComplete="user"
-              autoFocus
+              name="currentPassword"
+              label="Senha Anterior"
+              type="currentPassword"
+              id="currentPassword"
+              autoComplete="current-password"
             />
+                        
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="document"
-              label="CPF/CNPJ"
-              name="document"
-              autoComplete="document"
-              autoFocus
+              name="newPassword"
+              label="Nova Senha"
+              type="newPassword"
+              id="newPassword"
+              autoComplete="new-password"
             />
+                        
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="E-Mail"
-              name="email"
-              autoComplete="email"
-              autoFocus
+              name="confirmationPassword"
+              label="Confirmar Senha"
+              type="confirmationPassword"
+              id="confirmationPassword"
+              autoComplete="confirmation-password"
             />
             <Button
               type="submit"
