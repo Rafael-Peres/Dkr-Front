@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
 import bgimg from "../../../assets/carteira.jpg";
 function Copyright() {
   return (
@@ -90,6 +91,7 @@ export default function SignIn() {
               name="user"
               autoComplete="user"
               autoFocus
+              onChange={e => this.setState({ user: e.target.value })}
             />
             <TextField
               variant="outlined"
@@ -101,6 +103,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={e => this.setState({ user: e.target.value })}
             />
             <Button
               type="submit"
@@ -113,12 +116,12 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="../Forgot" variant="forgot">
                   Esqueci minha senha.
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="../SignUp" variant="signup">
                   {"Não é Cadastrado? Cadastra-se!"}
                 </Link>
               </Grid>

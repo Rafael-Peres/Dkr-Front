@@ -10,6 +10,21 @@ import RegisterJobs from "../pages/Jobs/Register";
 import ListJobs from "../pages/Jobs/List";
 import DetailJobs from "../pages/Jobs/Detail";
 
+import { isAuthenticated } from "../services/auth";
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+      )
+    }
+  />
+);
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -17,11 +32,11 @@ const Routes = () => (
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/forgot" component={Forgot} />
-      <Route path="/password" component={ChangePassword} />
-      <Route path="/profile" component={Profile} />
+      <PrivateRoute path="/password" component={ChangePassword} />
+      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute exact path="/jobs/register" component={RegisterJobs} />
+      <PrivateRoute exact path="/jobs/detail" component={DetailJobs} />
       <Route path="/jobs" component={ListJobs} />
-      <Route path="/jobs/register" component={RegisterJobs} />
-      <Route path="/jobs/detail" component={DetailJobs} />
     </Switch>
   </BrowserRouter>
 );
