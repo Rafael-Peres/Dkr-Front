@@ -32,10 +32,10 @@ const Routes = () => (
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/forgot" component={Forgot} />
-      <PrivateRoute path="/password" component={ChangePassword} />
-      <PrivateRoute path="/profile" component={Profile} />
-      <PrivateRoute exact path="/jobs/register" component={RegisterJobs} />
-      <PrivateRoute exact path="/jobs/detail" component={DetailJobs} />
+      <Route path="/password" component={ChangePassword} />
+      <Route path="/profile" component={Profile} />
+      <Route exact path="/jobs/register" component={RegisterJobs} />
+      <Route exact path="/jobs/detail" component={DetailJobs} />
       <Route path="/jobs" component={ListJobs} />
     </Switch>
   </BrowserRouter>
