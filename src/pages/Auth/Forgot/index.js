@@ -48,8 +48,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+export default function Forgot({ history }) {
   const classes = useStyles();
+
+  const handleSignin = async () => {
+    history.push("/signin");
+  };
 
   return (
     <div
@@ -114,6 +118,7 @@ export default function SignIn() {
               autoFocus
             />
             <Button
+              onClick={() => handleSignin()}
               type="submit"
               fullWidth
               variant="contained"

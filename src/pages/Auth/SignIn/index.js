@@ -69,6 +69,14 @@ export default function SignIn({ history }) {
     }
   };
 
+  const handleSignup = async () => {
+    history.push("/signup");
+  };
+
+  const handleForgot = async () => {
+    history.push("/forgot");
+  };
+
   return (
     <div
       style={{
@@ -133,12 +141,20 @@ export default function SignIn({ history }) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="../Forgot" variant="forgot">
+                <Link
+                  onClick={() => handleForgot()}
+                  variant="forgot"
+                  style={{ cursor: "pointer" }}
+                >
                   Esqueci minha senha.
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="../SignUp" variant="signup">
+                <Link
+                  onClick={() => handleSignup()}
+                  variant="signup"
+                  style={{ cursor: "pointer" }}
+                >
                   {"Não é Cadastrado? Cadastra-se!"}
                 </Link>
               </Grid>

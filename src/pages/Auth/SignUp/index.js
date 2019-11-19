@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignUp() {
+export default function SignUp({ history }) {
   const classes = useStyles();
 
   const inputLabel = React.useRef(null);
@@ -80,6 +80,10 @@ export default function SignUp() {
       ...state,
       [name]: event.target.value
     });
+  };
+
+  const handleSignin = async () => {
+    history.push("/signin");
   };
 
   // const [value, setValue] = React.useState("male");
@@ -324,7 +328,11 @@ export default function SignUp() {
                   </Button>
                   <Grid container justify="flex-end">
                     <Grid item>
-                      <Link href="../SignIn" variant="signin">
+                      <Link
+                        onClick={() => handleSignin()}
+                        variant="signin"
+                        style={{ cursor: "pointer" }}
+                      >
                         Você possui cadastro? Entrar.
                       </Link>
                     </Grid>

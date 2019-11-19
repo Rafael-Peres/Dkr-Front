@@ -16,7 +16,7 @@ export default createGlobalStyle`
     height: 100%
   }
   
-  button {
+  Link {
     cursor: pointer;
   }
 `;
