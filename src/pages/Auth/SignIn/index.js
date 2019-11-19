@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { Redirect, Router } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -10,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import bgimg from "../../../assets/carteira.jpg";
+import { Login } from "../../../services/requests/auth";
 function Copyright() {
   return (
     <Typography
@@ -49,8 +51,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+export default function SignIn({ history }) {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async () => {
+    const login = await Login({
+      data: {
+        username,
+        password
+      }
+    }).catch(err => console.log(err.response.data));
+
+    if (login.status === 200) {
+      history.push("/jobs");
+    }
+  };
 
   return (
     <div
@@ -91,7 +108,7 @@ export default function SignIn() {
               name="user"
               autoComplete="user"
               autoFocus
-              onChange={e => this.setState({ user: e.target.value })}
+              onChange={e => setUsername(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -103,14 +120,14 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={e => this.setState({ user: e.target.value })}
+              onChange={e => setPassword(e.target.value)}
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={() => handleSubmit()}
             >
               Entrar
             </Button>
