@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import bgimg from "../../../assets/carteira.jpg";
+import { Forgot } from "../../../services/requests/auth";
+import zIndex from "@material-ui/core/styles/zIndex";
+
 function Copyright() {
   return (
     <Typography
@@ -48,11 +51,75 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Forgot({ history }) {
+const Modal = ({ history, newPassword }) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        background: "rgba(0,0,0,0.8)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 2
+      }}
+    >
+      <div
+        style={{
+          background: "#eee",
+          width: "25%",
+          height: "20%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          borderRadius: 10
+        }}
+      >
+        <h1
+          style={{
+            color: "blue"
+          }}
+        >
+          Senha resetada!
+        </h1>
+        <h2>
+          Sua nova senha é: <strong>{newPassword}</strong>{" "}
+        </h2>
+
+        <Link
+          onClick={() => history.push("/signin")}
+          style={{ cursor: "pointer" }}
+        >
+          {"Ir para login!"}
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default function SignForgot({ history }) {
   const classes = useStyles();
 
-  const handleSignin = async () => {
-    history.push("/signin");
+  const [username, setUsername] = useState("");
+  const [document, setDocument] = useState("");
+  const [newPassword, setNewPassword] = useState();
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async () => {
+    const forgot = await Forgot({
+      data: {
+        username,
+        document,
+        email
+      }
+    }).catch(err => console.log(err.response.data));
+
+    if (forgot.status === 200) {
+      setNewPassword(forgot.data.newPassword);
+      // history.push("/signin");
+    }
   };
 
   return (
@@ -68,6 +135,7 @@ export default function Forgot({ history }) {
         backgroundImage: `url(${bgimg})`
       }}
     >
+      {newPassword && <Modal newPassword={newPassword} history={history} />}
       <Container
         component="main"
         maxWidth="xs"
@@ -94,6 +162,7 @@ export default function Forgot({ history }) {
               name="user"
               autoComplete="user"
               autoFocus
+              onChange={e => setUsername(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -105,6 +174,7 @@ export default function Forgot({ history }) {
               name="document"
               autoComplete="document"
               autoFocus
+              onChange={e => setDocument(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -116,14 +186,14 @@ export default function Forgot({ history }) {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={e => setEmail(e.target.value)}
             />
             <Button
-              onClick={() => handleSignin()}
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={() => handleSubmit()}
             >
               Enviar
             </Button>

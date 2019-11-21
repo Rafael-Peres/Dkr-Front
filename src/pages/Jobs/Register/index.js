@@ -73,18 +73,6 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  // const [state, setState] = React.useState("");
-
-  // const inputLabel = React.useRef(null);
-  // const [labelWidth, setLabelWidth] = React.useState(0);
-  // React.useEffect(() => {
-  //   setLabelWidth(inputLabel.current.offsetWidth);
-  // }, []);
-
-  // const handleChange = event => {
-  //   setState(event.target.value);
-  // };
-
   const [value, setValue] = React.useState("");
 
   const handleChange = event => {

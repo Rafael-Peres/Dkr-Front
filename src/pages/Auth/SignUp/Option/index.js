@@ -9,11 +9,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-import bgimg from "../../../assets/carteira.jpg";
-import { Login } from "../../../services/requests/auth";
+import bgimg from "../../../../assets/carteira.jpg";
 function Copyright() {
   return (
     <Typography
@@ -53,30 +50,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn({ history }) {
+export default function Option({ history }) {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = async () => {
-    const login = await Login({
-      data: {
-        username,
-        password
-      }
-    }).catch(err => notify.show(`${err.response.data}`));
-
-    if (login.status === 200) {
-      history.push("/jobs");
-    }
+  const handleSignupRecruiter = async () => {
+    history.push("/signup/recruiter");
   };
 
-  const handleSignup = async () => {
-    history.push("/signup/option");
-  };
-
-  const handleForgot = async () => {
-    history.push("/forgot");
+  const handleSignupCandidate = async () => {
+    history.push("/signup/candidate");
   };
 
   return (
@@ -105,62 +87,27 @@ export default function SignIn({ history }) {
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            DKR Vagas
+            Cadastro de usuários
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="user"
-              label="Usuário"
-              name="user"
-              autoComplete="user"
-              autoFocus
-              onChange={e => setUsername(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={e => setPassword(e.target.value)}
-            />
             <Button
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => handleSubmit()}
+              onClick={() => handleSignupRecruiter()}
             >
-              Entrar
+              Recrutador
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link
-                  onClick={() => handleForgot()}
-                  variant="forgot"
-                  style={{ cursor: "pointer" }}
-                >
-                  Esqueci minha senha.
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  onClick={() => handleSignup()}
-                  variant="signup"
-                  style={{ cursor: "pointer" }}
-                >
-                  {"Não é Cadastrado? Cadastra-se!"}
-                </Link>
-              </Grid>
-            </Grid>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => handleSignupCandidate()}
+            >
+              Candidato
+            </Button>
           </form>
         </div>
       </Container>
