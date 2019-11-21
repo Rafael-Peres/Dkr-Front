@@ -2,6 +2,10 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
@@ -10,6 +14,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import DateFnsUtils from "@date-io/date-fns";
 import InputLabel from "@material-ui/core/InputLabel";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
@@ -59,16 +64,24 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  textField: {
+    marginTop: theme.spacing(3),
+    width: "100%"
+  },
+  formControl: {
+    marginTop: theme.spacing(0),
+    width: "100%"
   }
 }));
 
-export default function SignUp({ history }) {
+export default function SignUpRecruiter({ history }) {
   const classes = useStyles();
 
   const [value, setValue] = React.useState("");
 
-  const handleChangeLetter = event => {
-    setValue(event.target.value);
+  const handleOption = event => {
+    history.push("/signup/option");
   };
 
   const inputLabel = React.useRef(null);
@@ -76,6 +89,7 @@ export default function SignUp({ history }) {
     age: "",
     name: "hai"
   });
+
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -88,15 +102,17 @@ export default function SignUp({ history }) {
     });
   };
 
+  const handleChangeLetter = event => {
+    setValue(event.target.value);
+  };
+
   const handleSignin = async () => {
     history.push("/signin");
   };
 
-  const handleOption = event => {
-    history.push("/signup/option");
-  };
-
-  const [setSelectedDate] = React.useState(new Date("2014-08-18T21:11:54"));
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2014-08-18T21:11:54")
+  );
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -136,13 +152,6 @@ export default function SignUp({ history }) {
                 <Typography component="h1" variant="h5">
                   Cadastro de Recrutadores
                 </Typography>
-                {/* <Grid container justify="center" alignItems="center">
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    className={classes.bigAvatar}
-                  />
-                </Grid> */}
                 <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={5} lg={5}>
@@ -183,7 +192,7 @@ export default function SignUp({ history }) {
                         autoComplete="current-password"
                       />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={4}>
                       <TextField
                         variant="outlined"
                         required
@@ -195,7 +204,7 @@ export default function SignUp({ history }) {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={4}>
                       <TextField
                         variant="outlined"
                         required
@@ -205,6 +214,20 @@ export default function SignUp({ history }) {
                         name="Document"
                         autoComplete="Document"
                       />
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                          disableToolbar
+                          variant="inline"
+                          format="dd/MM/yyyy"
+                          margin="normal"
+                          id="date-picker-inline"
+                          label="Data de Aniversário"
+                          value={selectedDate}
+                          onChange={handleDateChange}
+                        />
+                      </MuiPickersUtilsProvider>
                     </Grid>
                     <Grid item xs={12} md={3}>
                       <FormControl
@@ -293,7 +316,7 @@ export default function SignUp({ history }) {
                     <Grid item xs={12}>
                       <TextField
                         id="description"
-                        label="Carta de Apresentação"
+                        label="Descrição"
                         multiline
                         rowsMax="4"
                         value={value}
@@ -317,7 +340,7 @@ export default function SignUp({ history }) {
                     <Grid item xs>
                       <Link
                         onClick={() => handleOption()}
-                        variant="forgot"
+                        variant="option"
                         style={{ cursor: "pointer" }}
                       >
                         Voltar

@@ -9,8 +9,6 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import bgimg from "../../../assets/carteira.jpg";
 import { Login } from "../../../services/requests/auth";
@@ -64,7 +62,7 @@ export default function SignIn({ history }) {
         username,
         password
       }
-    }).catch(err => notify.show(`${err.response.data}`));
+    }).catch(err => console.log(err.response.data));
 
     if (login.status === 200) {
       history.push("/jobs");

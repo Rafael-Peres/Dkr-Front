@@ -11,10 +11,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import bgimg from "../../../assets/carteira.jpg";
 import { Card } from "../../../components/Card";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import FormControl from "@material-ui/core/FormControl";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import Select from "@material-ui/core/Select";
 
 function Copyright() {
   return (
@@ -140,49 +136,6 @@ export default function SignUp() {
                         autoFocus
                       />
                     </Grid>
-                    {/* <Grid item xs={12} md={4}>
-                      <FormControl
-                        variant="outlined"
-                        className={classes.formControl}
-                        item
-                        xs={12}
-                        md={4}
-                      >
-                        <InputLabel
-                          ref={inputLabel}
-                          id="demo-simple-select-outlined-label"
-                        >
-                          Estado
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          value={state}
-                          onChange={handleChange}
-                          labelWidth={labelWidth}
-                        >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid> */}
-
-                    {/* <Grid item xs={12} md={3}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Senha"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                      />
-                    </Grid> */}
                     <Grid item xs={12} md={8}>
                       <TextField
                         variant="outlined"
