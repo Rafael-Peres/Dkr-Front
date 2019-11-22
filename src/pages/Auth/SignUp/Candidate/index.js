@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -7,15 +7,10 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
-import Radio from "@material-ui/core/Radio";
 import Select from "@material-ui/core/Select";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import DateFnsUtils from "@date-io/date-fns";
 import InputLabel from "@material-ui/core/InputLabel";
+import DateFnsUtils from "@date-io/date-fns";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -24,6 +19,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import bgimg from "../../../../assets/carteira.jpg";
 import { Card } from "../../../../components/Card";
+import { storeCandidate } from "../../../../services/requests/candidates";
+import { storeUser } from "../../../../services/requests/users";
 
 function Copyright() {
   return (
@@ -77,9 +74,43 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUpRecruiter({ history }) {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [document, setDocument] = useState("");
+  const [birthDate, setbirthDate] = useState("");
+  const [gender, setGender] = useState("");
+  const [city, setCity] = useState("");
+  const [stateUF, setStateUF] = useState("");
+  const [profission, setProfission] = useState("");
+  const [nivel, setNivel] = useState("");
+  const [pretenssion, setPretenssion] = useState("");
 
   const [value, setValue] = React.useState("");
 
+  const handleSubmit = async () => {
+    const candidate = await storeCandidate({
+      data: {
+        profission,
+        nivel,
+        pretenssion
+      }
+    }).catch(err => console.log(err.response.data));
+    const user = await storeUser({
+      data: {
+        username,
+        password,
+        fullName,
+        email,
+        document,
+        birthDate,
+        gender,
+        stateUF,
+        city
+      }
+    }).catch(err => console.log(err.response.data));
+  };
   const handleOption = event => {
     history.push("/signup/option");
   };
@@ -164,6 +195,7 @@ export default function SignUpRecruiter({ history }) {
                         id="fullName"
                         label="Nome"
                         autoFocus
+                        onChange={e => setFullname(e.target.value)}
                       />
                     </Grid>
 
@@ -177,6 +209,7 @@ export default function SignUpRecruiter({ history }) {
                         id="user"
                         label="Usuário"
                         autoFocus
+                        onChange={e => setUsername(e.target.value)}
                       />
                     </Grid>
 
@@ -190,6 +223,7 @@ export default function SignUpRecruiter({ history }) {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={e => setPassword(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -201,6 +235,7 @@ export default function SignUpRecruiter({ history }) {
                         label="Email"
                         name="email"
                         autoComplete="email"
+                        onChange={e => setEmail(e.target.value)}
                       />
                     </Grid>
 
@@ -213,6 +248,7 @@ export default function SignUpRecruiter({ history }) {
                         label="CPF/CNPJ"
                         name="Document"
                         autoComplete="Document"
+                        onChange={e => setDocument(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -225,7 +261,7 @@ export default function SignUpRecruiter({ history }) {
                           id="date-picker-inline"
                           label="Data de Aniversário"
                           value={selectedDate}
-                          onChange={handleDateChange}
+                          onChange={e => setbirthDate(e.target.value)}
                         />
                       </MuiPickersUtilsProvider>
                     </Grid>
@@ -240,7 +276,7 @@ export default function SignUpRecruiter({ history }) {
                         <Select
                           native
                           value={state.gender}
-                          onChange={handleChange("gender")}
+                          onChange={e => setGender(e.target.value)}
                           labelWidth={labelWidth}
                           inputProps={{
                             name: "gender",
@@ -263,6 +299,7 @@ export default function SignUpRecruiter({ history }) {
                         label="Cidade"
                         name="City"
                         autoComplete="City"
+                        onChange={e => setCity(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -276,7 +313,7 @@ export default function SignUpRecruiter({ history }) {
                         <Select
                           native
                           value={state.state}
-                          onChange={handleChange("state")}
+                          onChange={e => setStateUF(e.target.value)}
                           labelWidth={labelWidth}
                           inputProps={{
                             name: "state",
@@ -323,6 +360,7 @@ export default function SignUpRecruiter({ history }) {
                         id="profission"
                         label="Profissão"
                         autoFocus
+                        onChange={e => setProfission(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -335,6 +373,7 @@ export default function SignUpRecruiter({ history }) {
                         id="nivel"
                         label="Nível"
                         autoFocus
+                        onChange={e => setNivel(e.target.value)}
                       />
                     </Grid>
 
@@ -348,6 +387,7 @@ export default function SignUpRecruiter({ history }) {
                         id="pretenssion"
                         label="Pretensão Salarial"
                         autoFocus
+                        onChange={e => setPretenssion(e.target.value)}
                       />
                     </Grid>
                   </Grid>
