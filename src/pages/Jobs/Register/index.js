@@ -1,17 +1,17 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import bgimg from "../../../assets/carteira.jpg";
-import { Card } from "../../../components/Card";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import { Card } from '../../../components/Card';
+import bgimg from '../../../assets/carteira.jpg';
 
 function Copyright() {
   return (
@@ -20,67 +20,68 @@ function Copyright() {
       color="textSecondary"
       align="center"
       style={{
-        fontWeight: "bolder",
-        color: "#4F4F4F"
+        fontWeight: 'bolder',
+        color: '#4F4F4F',
       }}
     >
-      {"Copyright © "}
-      DKR - Vagas {new Date().getFullYear()}
-      {"."}
-    </Typography>
+      Copyright © DKR - Vagas 
+{' '}
+{new Date().getFullYear()}
+.
+</Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
+  '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
   },
   FormControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   textField: {
     marginTop: theme.spacing(3),
-    width: "100%"
+    width: '100%',
   },
   formControl: {
     marginTop: theme.spacing(0),
-    width: "100%",
-    fontSize: "0.5rem"
-  }
+    width: '100%',
+    fontSize: '0.5rem',
+  },
 }));
 
-export default function SignUp() {
+export default function SignUp({ history }) {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
   const inputLabel = React.useRef(null);
   const [state, setState] = React.useState({
-    age: "",
-    name: "hai"
+    age: '',
+    name: 'hai',
   });
 
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -91,11 +92,15 @@ export default function SignUp() {
   const handleChange = name => event => {
     setState({
       ...state,
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
 
-  const [setSelectedDate] = React.useState(new Date("2014-08-18T21:11:54"));
+  const handleJobs = async () => {
+    history.push('/jobs');
+  };
+
+  const [setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -104,23 +109,23 @@ export default function SignUp() {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundImage: `url(${bgimg})`
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container component="main" maxWidth="lg">
         <Grid
           style={{
-            display: "flex",
+            display: 'flex',
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center"
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Grid item xs={12} sm={9} md={8} lg={7}>
@@ -213,11 +218,11 @@ export default function SignUp() {
                         <Select
                           native
                           value={state.state}
-                          onChange={handleChange("state")}
+                          onChange={handleChange('state')}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: "state",
-                            id: "state"
+                            name: 'state',
+                            id: 'state',
                           }}
                         >
                           <option value="   " />
@@ -270,6 +275,7 @@ export default function SignUp() {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={() => handleJobs()}
                   >
                     Cadastrar
                   </Button>

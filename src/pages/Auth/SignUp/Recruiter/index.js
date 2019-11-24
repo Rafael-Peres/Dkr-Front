@@ -1,29 +1,29 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
-import Radio from "@material-ui/core/Radio";
-import Select from "@material-ui/core/Select";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import DateFnsUtils from "@date-io/date-fns";
-import InputLabel from "@material-ui/core/InputLabel";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import bgimg from "../../../../assets/carteira.jpg";
-import { Card } from "../../../../components/Card";
+import Radio from '@material-ui/core/Radio';
+import Select from '@material-ui/core/Select';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import DateFnsUtils from '@date-io/date-fns';
+import InputLabel from '@material-ui/core/InputLabel';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import bgimg from '../../../../assets/carteira.jpg';
+import { Card } from '../../../../components/Card';
 
 function Copyright() {
   return (
@@ -32,62 +32,63 @@ function Copyright() {
       color="textSecondary"
       align="center"
       style={{
-        fontWeight: "bolder",
-        color: "#4F4F4F"
+        fontWeight: 'bolder',
+        color: '#4F4F4F',
       }}
     >
-      {"Copyright © "}
-      DKR - Vagas {new Date().getFullYear()}
-      {"."}
-    </Typography>
+      Copyright © DKR - Vagas 
+{' '}
+{new Date().getFullYear()}
+.
+</Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
+  '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   formControl: {
-    fontSize: "0.5rem"
+    fontSize: '0.5rem',
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
   },
   textField: {
     marginTop: theme.spacing(3),
-    width: "100%"
+    width: '100%',
   },
   formControl: {
     marginTop: theme.spacing(0),
-    width: "100%"
-  }
+    width: '100%',
+  },
 }));
 
 export default function SignUpRecruiter({ history }) {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
   const handleOption = event => {
-    history.push("/signup/option");
+    history.push('/signup/option');
   };
 
   const inputLabel = React.useRef(null);
   const [state, setState] = React.useState({
-    age: "",
-    name: "hai"
+    age: '',
+    name: 'hai',
   });
 
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -98,7 +99,7 @@ export default function SignUpRecruiter({ history }) {
   const handleChange = name => event => {
     setState({
       ...state,
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
 
@@ -107,11 +108,11 @@ export default function SignUpRecruiter({ history }) {
   };
 
   const handleSignin = async () => {
-    history.push("/signin");
+    history.push('/signin');
   };
 
   const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
+    new Date('2014-08-18T21:11:54')
   );
 
   const handleDateChange = date => {
@@ -121,28 +122,28 @@ export default function SignUpRecruiter({ history }) {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundImage: `url(${bgimg})`
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container component="main" maxWidth="lg">
         <Grid
           style={{
-            display: "flex",
+            display: 'flex',
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            backgroundSize: "cover"
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            backgroundSize: 'cover',
           }}
         >
           <Grid item xs={12} sm={9} md={8} lg={7}>
@@ -240,11 +241,11 @@ export default function SignUpRecruiter({ history }) {
                         <Select
                           native
                           value={state.gender}
-                          onChange={handleChange("gender")}
+                          onChange={handleChange('gender')}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: "gender",
-                            id: "gender"
+                            name: 'gender',
+                            id: 'gender',
                           }}
                         >
                           <option value="   " />
@@ -276,11 +277,11 @@ export default function SignUpRecruiter({ history }) {
                         <Select
                           native
                           value={state.state}
-                          onChange={handleChange("state")}
+                          onChange={handleChange('state')}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: "state",
-                            id: "state"
+                            name: 'state',
+                            id: 'state',
                           }}
                         >
                           <option value="   " />
@@ -333,6 +334,7 @@ export default function SignUpRecruiter({ history }) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={() => handleSignin()}
                   >
                     Cadastrar
                   </Button>
@@ -341,7 +343,7 @@ export default function SignUpRecruiter({ history }) {
                       <Link
                         onClick={() => handleOption()}
                         variant="option"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                       >
                         Voltar
                       </Link>
@@ -350,7 +352,7 @@ export default function SignUpRecruiter({ history }) {
                       <Link
                         onClick={() => handleSignin()}
                         variant="signin"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                       >
                         Você possui cadastro? Entrar.
                       </Link>

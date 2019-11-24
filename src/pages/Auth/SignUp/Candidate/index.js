@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import DateFnsUtils from "@date-io/date-fns";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import bgimg from "../../../../assets/carteira.jpg";
-import { Card } from "../../../../components/Card";
-import { storeCandidate } from "../../../../services/requests/candidates";
-import { storeUser } from "../../../../services/requests/users";
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import DateFnsUtils from '@date-io/date-fns';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import bgimg from '../../../../assets/carteira.jpg';
+import { Card } from '../../../../components/Card';
+import { storeCandidate } from '../../../../services/requests/candidates';
+import { storeUser } from '../../../../services/requests/users';
 
 function Copyright() {
   return (
@@ -29,73 +29,71 @@ function Copyright() {
       color="textSecondary"
       align="center"
       style={{
-        fontWeight: "bolder",
-        color: "#4F4F4F"
+        fontWeight: 'bolder',
+        color: '#4F4F4F',
       }}
     >
-      {"Copyright © "}
-      DKR - Vagas {new Date().getFullYear()}
-      {"."}
+      Copyright © DKR - Vagas {new Date().getFullYear()}.
     </Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
+  '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   formControl: {
-    fontSize: "0.5rem"
+    fontSize: '0.5rem',
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
   },
   textField: {
     marginTop: theme.spacing(3),
-    width: "100%"
+    width: '100%',
   },
   formControl: {
     marginTop: theme.spacing(0),
-    width: "100%"
-  }
+    width: '100%',
+  },
 }));
 
 export default function SignUpRecruiter({ history }) {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [fullName, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [document, setDocument] = useState("");
-  const [birthDate, setbirthDate] = useState("");
-  const [gender, setGender] = useState("");
-  const [city, setCity] = useState("");
-  const [stateUF, setStateUF] = useState("");
-  const [profission, setProfission] = useState("");
-  const [nivel, setNivel] = useState("");
-  const [pretenssion, setPretenssion] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [document, setDocument] = useState('');
+  const [birthDate, setbirthDate] = useState('');
+  const [gender, setGender] = useState('');
+  const [city, setCity] = useState('');
+  const [stateUF, setStateUF] = useState('');
+  const [profission, setProfission] = useState('');
+  const [nivel, setNivel] = useState('');
+  const [pretenssion, setPretenssion] = useState('');
 
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
   const handleSubmit = async () => {
     const candidate = await storeCandidate({
       data: {
         profission,
         nivel,
-        pretenssion
-      }
+        pretenssion,
+      },
     }).catch(err => console.log(err.response.data));
     const user = await storeUser({
       data: {
@@ -107,18 +105,19 @@ export default function SignUpRecruiter({ history }) {
         birthDate,
         gender,
         stateUF,
-        city
-      }
+        city,
+      },
     }).catch(err => console.log(err.response.data));
   };
+
   const handleOption = event => {
-    history.push("/signup/option");
+    history.push('/signup/option');
   };
 
   const inputLabel = React.useRef(null);
   const [state, setState] = React.useState({
-    age: "",
-    name: "hai"
+    age: '',
+    name: 'hai',
   });
 
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -129,7 +128,7 @@ export default function SignUpRecruiter({ history }) {
   const handleChange = name => event => {
     setState({
       ...state,
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
 
@@ -138,11 +137,11 @@ export default function SignUpRecruiter({ history }) {
   };
 
   const handleSignin = async () => {
-    history.push("/signin");
+    history.push('/signin');
   };
 
   const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
+    new Date('2014-08-18T21:11:54')
   );
 
   const handleDateChange = date => {
@@ -152,28 +151,28 @@ export default function SignUpRecruiter({ history }) {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundImage: `url(${bgimg})`
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container component="main" maxWidth="lg">
         <Grid
           style={{
-            display: "flex",
+            display: 'flex',
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            backgroundSize: "cover"
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            backgroundSize: 'cover',
           }}
         >
           <Grid item xs={12} sm={9} md={8} lg={7}>
@@ -279,8 +278,8 @@ export default function SignUpRecruiter({ history }) {
                           onChange={e => setGender(e.target.value)}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: "gender",
-                            id: "gender"
+                            name: 'gender',
+                            id: 'gender',
                           }}
                         >
                           <option value="   " />
@@ -316,8 +315,8 @@ export default function SignUpRecruiter({ history }) {
                           onChange={e => setStateUF(e.target.value)}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: "state",
-                            id: "state"
+                            name: 'state',
+                            id: 'state',
                           }}
                         >
                           <option value="   " />
@@ -397,6 +396,7 @@ export default function SignUpRecruiter({ history }) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={() => handleSignin()}
                   >
                     Cadastrar
                   </Button>
@@ -405,7 +405,7 @@ export default function SignUpRecruiter({ history }) {
                       <Link
                         onClick={() => handleOption()}
                         variant="option"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                       >
                         Voltar
                       </Link>
@@ -414,7 +414,7 @@ export default function SignUpRecruiter({ history }) {
                       <Link
                         onClick={() => handleSignin()}
                         variant="signin"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                       >
                         Você possui cadastro? Entrar.
                       </Link>

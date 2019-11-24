@@ -1,17 +1,17 @@
-import React, { Component, useState } from "react";
-import { Redirect, Router } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-import bgimg from "../../../assets/carteira.jpg";
-import { Login } from "../../../services/requests/auth";
+import bgimg from '../../../assets/carteira.jpg';
+import { Login } from '../../../services/requests/auth';
+
 function Copyright() {
   return (
     <Typography
@@ -19,85 +19,89 @@ function Copyright() {
       color="textSecondary"
       align="center"
       style={{
-        fontWeight: "bolder",
-        color: "#4F4F4F"
+        fontWeight: 'bolder',
+        color: '#4F4F4F',
       }}
     >
-      {"Copyright © "}
-      DKR - Vagas {new Date().getFullYear()}
-      {"."}
-    </Typography>
+      Copyright © DKR - Vagas 
+{' '}
+{new Date().getFullYear()}
+.
+</Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
+  '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignIn({ history }) {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
     const login = await Login({
       data: {
         username,
-        password
-      }
+        password,
+      },
     }).catch(err => console.log(err.response.data));
 
     if (login.status === 200) {
-      history.push("/jobs");
+      history.push('/jobs');
     }
+  };
+  const handleJobs = async () => {
+    history.push('/jobs');
   };
 
   const handleSignup = async () => {
-    history.push("/signup/option");
+    history.push('/signup/option');
   };
 
   const handleForgot = async () => {
-    history.push("/forgot");
+    history.push('/forgot');
   };
 
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundImage: `url(${bgimg})`
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container
         component="main"
         maxWidth="xs"
         style={{
-          boxShadow: "0px 0px 3px #AAA",
+          boxShadow: '0px 0px 3px #AAA',
           padding: 15,
           borderRadius: 5,
-          backgroundColor: "#FFF"
+          backgroundColor: '#FFF',
         }}
       >
         <CssBaseline />
@@ -135,7 +139,7 @@ export default function SignIn({ history }) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => handleSubmit()}
+              onClick={() => handleJobs()}
             >
               Entrar
             </Button>
@@ -144,7 +148,7 @@ export default function SignIn({ history }) {
                 <Link
                   onClick={() => handleForgot()}
                   variant="forgot"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 >
                   Esqueci minha senha.
                 </Link>
@@ -153,9 +157,9 @@ export default function SignIn({ history }) {
                 <Link
                   onClick={() => handleSignup()}
                   variant="signup"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 >
-                  {"Não é Cadastrado? Cadastra-se!"}
+                  Não é Cadastrado? Cadastra-se!
                 </Link>
               </Grid>
             </Grid>
