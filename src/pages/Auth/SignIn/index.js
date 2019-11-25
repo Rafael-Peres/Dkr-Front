@@ -23,11 +23,8 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      Copyright © DKR - Vagas 
-{' '}
-{new Date().getFullYear()}
-.
-</Typography>
+      Copyright © DKR - Vagas {new Date().getFullYear()}.
+    </Typography>
   );
 }
 
@@ -134,7 +131,7 @@ export default function SignIn({ history }) {
               autoComplete="current-password"
               onChange={e => setPassword(e.target.value)}
             />
-            {/* <Button
+            <Button
               fullWidth
               variant="contained"
               color="primary"
@@ -142,7 +139,7 @@ export default function SignIn({ history }) {
               onClick={() => handleJobs()}
             >
               Entrar
-            </Button> */}
+            </Button>
             <Grid container>
               <Grid item xs>
                 <Link
