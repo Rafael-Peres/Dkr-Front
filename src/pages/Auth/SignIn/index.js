@@ -23,7 +23,7 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      Copyright © DKR - Vagas {new Date().getFullYear()}.
+      Copyright © Seinn - Selection e Innovation {new Date().getFullYear()}.
     </Typography>
   );
 }
@@ -104,7 +104,7 @@ export default function SignIn({ history }) {
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            DKR Vagas
+            Seinn
           </Typography>
           <form className={classes.form} noValidate>
             <TextField

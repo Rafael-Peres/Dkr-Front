@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import bgimg from "../../../assets/carteira.jpg";
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import bgimg from '../../../assets/carteira.jpg';
+
 function Copyright() {
   return (
     <Typography
@@ -16,36 +17,35 @@ function Copyright() {
       color="textSecondary"
       align="center"
       style={{
-        fontWeight: "bolder",
-        color: "#4F4F4F"
+        fontWeight: 'bolder',
+        color: '#4F4F4F',
       }}
     >
-      {"Copyright © "}
-      DKR - Vagas {new Date().getFullYear()}
-      {"."}
+      {'Copyright © '}
+      Seinn - Selection e Innovation {new Date().getFullYear()}.
     </Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
+  '@global': {
     body: {
-      backgroundColor: theme.palette.common.white
-    }
+      backgroundColor: theme.palette.common.white,
+    },
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignIn() {
@@ -54,24 +54,24 @@ export default function SignIn() {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         flex: 1,
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        backgroundSize: "cover",
-        backgroundImage: `url(${bgimg})`
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container
         component="main"
         maxWidth="xs"
         style={{
-          boxShadow: "0px 0px 3px #AAA",
+          boxShadow: '0px 0px 3px #AAA',
           padding: 15,
           borderRadius: 5,
-          backgroundColor: "#FFF"
+          backgroundColor: '#FFF',
         }}
       >
         <CssBaseline />
@@ -91,7 +91,7 @@ export default function SignIn() {
               id="currentPassword"
               autoComplete="current-password"
             />
-                        
+
             <TextField
               variant="outlined"
               margin="normal"
@@ -103,7 +103,7 @@ export default function SignIn() {
               id="newPassword"
               autoComplete="new-password"
             />
-                        
+
             <TextField
               variant="outlined"
               margin="normal"

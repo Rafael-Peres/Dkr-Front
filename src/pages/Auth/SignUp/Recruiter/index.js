@@ -36,11 +36,8 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      Copyright © DKR - Vagas 
-{' '}
-{new Date().getFullYear()}
-.
-</Typography>
+      Copyright © - Seinn - Selection e Innovation {new Date().getFullYear()}.
+    </Typography>
   );
 }
 
