@@ -9,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import PageHeader from '../../../components/Header';
+import PageFooter from '../../../components/Footer';
+
+import loginImage from '../../../assets/loginIlustration.svg';
 import bgimg from '../../../assets/carteira.jpg';
 import { Login } from '../../../services/requests/auth';
 
@@ -37,16 +41,31 @@ const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
-    flexDirection: 'column',
+    // justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    // width: '20vw', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  imageLogin: {
+    width: '20%',
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '20px',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: ' #3f64e5',
   },
+
+  acessarConta: {
+
+  }
+
 }));
 
 export default function SignIn({ history }) {
@@ -81,21 +100,22 @@ export default function SignIn({ history }) {
   return (
     <div
       style={{
-        display: 'flex',
+        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
+        // backgroundImage: `url(${bgimg})`,
       }}
     >
+      <PageHeader />
       <Container
         component="main"
-        maxWidth="xs"
+        // maxWidth="md"
         style={{
-          boxShadow: '0px 0px 3px #AAA',
+          // boxShadow: '0px 0px 3px #AAA',
           padding: 15,
           borderRadius: 5,
           backgroundColor: '#FFF',
@@ -103,10 +123,13 @@ export default function SignIn({ history }) {
       >
         <CssBaseline />
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Seinn
-          </Typography>
           <form className={classes.form} noValidate>
+            <Typography component="h1" variant="h5" color="primary">
+              Bem Vindo(a)!
+            </Typography>
+            <Typography component="subtitle1" variant="h5" color="inherit">
+              Faça login ou cadastre-se para <br /> se candidatar a uma vaga.
+            </Typography>
             <TextField
               variant="outlined"
               margin="normal"
@@ -131,6 +154,18 @@ export default function SignIn({ history }) {
               autoComplete="current-password"
               onChange={e => setPassword(e.target.value)}
             />
+            <Grid container>
+              <Grid item xs>
+                <Link
+                  className={classes.acessarConta}
+                  onClick={() => handleForgot()}
+                  variant="forgot"
+                  style={{ cursor: 'pointer' }}
+                >
+                  Esqueceu sua senha?
+                </Link>
+              </Grid>
+            </Grid>
             <Button
               fullWidth
               variant="contained"
@@ -138,20 +173,13 @@ export default function SignIn({ history }) {
               className={classes.submit}
               onClick={() => handleJobs()}
             >
-              Entrar
+              Acessar conta
             </Button>
+
             <Grid container>
-              <Grid item xs>
-                <Link
-                  onClick={() => handleForgot()}
-                  variant="forgot"
-                  style={{ cursor: 'pointer' }}
-                >
-                  Esqueci minha senha.
-                </Link>
-              </Grid>
               <Grid item>
                 <Link
+                  className={classes.acessarConta}
                   onClick={() => handleSignup()}
                   variant="signup"
                   style={{ cursor: 'pointer' }}
@@ -161,11 +189,15 @@ export default function SignIn({ history }) {
               </Grid>
             </Grid>
           </form>
+          <div className={classes.imageLogin}>
+            <img src={loginImage} alt="Logo da aplicação" />
+          </div>
         </div>
       </Container>
-      <Box mt={8}>
+      {/* <Box mt={8}>
         <Copyright />
-      </Box>
-    </div>
+      </Box> */}
+      <PageFooter />
+    </div >
   );
 }

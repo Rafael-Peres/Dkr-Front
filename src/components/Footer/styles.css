@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
+
+.pagefooter-container{
+    width: 100%;
+    height: 40vh;
+    margin: 0 auto;
+    background-color: #3f64e5;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.pagefooter-content{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    margin: 50px 30px 50px 30px;
+    
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "lista vagas contato"
+    "lista vagas contato"
+    ;
+}
+
+.pagefooter-menu{  
+    grid-area: lista;
+}
+
+.pagefooter-menu li{
+    margin: 10px;
+    list-style: none;
+}
+
+.pagefooter-menu li a{
+    list-style: none;
+    font-size: 15px;
+    color: #fff; 
+}
+
+.vagas-container{
+  height: 30vh;
+  border-radius: 0.8rem;
+  font: 19.67px;
+  background-color: #3f64e5;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  grid-area: vagas;
+  
+  text-decoration: none;
+  color: #fff;
+}
+
+.vagas-container input{
+  width: 60%;
+  height: 2rem;
+  margin-top: 0.8rem;
+  border-radius: 0.5rem;
+  background: white;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0 1.6rem;
+  font: 0.6rem;
+  text-align: center;
+}
+
+.vagas-container button{
+    width: 6rem;
+    height: 2rem;
+    margin-top: 0.8rem;
+    border-radius: 0.5rem;
+    background: white;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0 1.6rem;
+    font: 0.6rem;
+    margin-left: 10px;
+    color: #3f64e5;
+    font-weight: 500;
+}
+
+.contato-container{
+    display: flex;
+    flex-direction: column;
+    grid-area: contato;
+}
+
+.contato-container span{
+    color: #fff;
+    margin-left: 45px;
+    line-height: 30px;
+}
+
+.contato-container ul{
+    display: flex; 
+    
+}
+
+.contato-container li{
+    list-style: none;
+    margin: 5px;
+}
+
+
+
