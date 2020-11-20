@@ -12,6 +12,12 @@ import Container from '@material-ui/core/Container';
 import bgimg from '../../../assets/carteira.jpg';
 import { Card } from '../../../components/Card';
 
+import loginImage from '../../../assets/loginIlustration.svg';
+
+import PageHeader from '../../../components/Header';
+import PageFooter from '../../../components/Footer';
+import zIndex from '@material-ui/core/styles/zIndex';
+
 function Copyright() {
   return (
     <Typography
@@ -38,12 +44,16 @@ const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    // flexDirection: 'column',
+    // alignItems: 'center',
+
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '50%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
+  },
+  imageLogin: {
+    width: '50%'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -64,21 +74,24 @@ export default function SignUp() {
   return (
     <div
       style={{
-        display: 'flex',
+        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
+
+        // backgroundImage: `url(${bgimg})`,
       }}
     >
-      <Container component="main" maxWidth="lg">
+      <PageHeader />
+      <Container component="main" maxWidth="lg" >
         <Grid
           style={{
             display: 'flex',
             flex: 1,
+            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
           }}
@@ -86,26 +99,14 @@ export default function SignUp() {
           <Grid item xs={12} sm={9} md={8} lg={7}>
             <Card>
               <CssBaseline />
-              <div className={classes.paper}>
-                <Typography component="h1" variant="h5">
-                  Perfil
+              <Typography component="h1" variant="h5">
+                Perfil
                 </Typography>
+              <div className={classes.paper}>
+
                 <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={5} lg={5}>
-                      <TextField
-                        autoComplete="fname"
-                        name="fullName"
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="fullName"
-                        label="Nome"
-                        autoFocus
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         autoComplete="user"
                         name="user"
@@ -113,24 +114,26 @@ export default function SignUp() {
                         required
                         fullWidth
                         id="user"
-                        label="Usuário"
+                        label="insira seu nome de usuario"
                         autoFocus
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
+
+                        autoComplete="fname"
+                        name="fullName"
                         variant="outlined"
                         required
                         fullWidth
-                        name="password"
-                        label="Senha"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
+                        id="fullName"
+                        label="Nome completo"
+                        autoFocus
                       />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -142,7 +145,37 @@ export default function SignUp() {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+
+                        autoComplete="birthDate"
+                        name="birthDate"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="fullName"
+                        label="Data de nascimento"
+                        type="date"
+                        autoFocus
+                        disabledToubar
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                      />
+                    </Grid>
+
+
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -153,7 +186,7 @@ export default function SignUp() {
                         autoComplete="Document"
                       />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -164,7 +197,7 @@ export default function SignUp() {
                         autoComplete="City"
                       />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -176,7 +209,7 @@ export default function SignUp() {
                       />
                     </Grid>
                   </Grid>
-                  {/* <Button
+                  <Button
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -184,16 +217,29 @@ export default function SignUp() {
                     className={classes.submit}
                   >
                     Salvar
-                  </Button> */}
+                  </Button>
                 </form>
+                <Container
+                  style={{
+                    // display: 'flex',
+                    flex: 1,
+                    height: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    backgroundSize: 'cover',
+                    backgroundImage: `url(${loginImage})`,
+                  }}
+
+                >
+
+                </Container>
               </div>
             </Card>
           </Grid>
         </Grid>
       </Container>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </div>
+      <PageFooter />
+    </div >
   );
 }

@@ -39,11 +39,12 @@ const useStyles = makeStyles(theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(3),
     display: 'flex',
     // justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+
   },
   form: {
     // width: '20vw', // Fix IE 11 issue.
@@ -56,6 +57,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     marginLeft: '20px',
+  },
+  image: {
+    width: '40rem',
+    height: '40rem',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -190,7 +195,7 @@ export default function SignIn({ history }) {
             </Grid>
           </form>
           <div className={classes.imageLogin}>
-            <img src={loginImage} alt="Logo da aplicação" />
+            <img className={classes.image} src={loginImage} alt="Logo da aplicação" />
           </div>
         </div>
       </Container>

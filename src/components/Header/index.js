@@ -20,8 +20,8 @@ class PageHeader extends Component {
                     </div>
 
                     <div className="buttons-container">
-                        <Link>Área do contato</Link>
-                        <Link>Cadastrar minha empresa</Link>
+                        <Link>Área do candidato</Link>
+                        <Link>Área do recrutador</Link>
                     </div>
                 </div>
             </div>

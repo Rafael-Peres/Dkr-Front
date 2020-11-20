@@ -22,6 +22,12 @@ import { Card } from '../../../../components/Card';
 import { storeCandidate } from '../../../../services/requests/candidates';
 import { storeUser } from '../../../../services/requests/users';
 
+import loginImage from '../../../../assets/loginIlustration.svg';
+
+import PageHeader from '../../../../components/Header';
+import PageFooter from '../../../../components/Footer';
+import { BorderAll } from '@material-ui/icons';
+
 function Copyright() {
   return (
     <Typography
@@ -44,21 +50,27 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
+  titulo: {
+    display: 'flex',
+    alignContent: 'center',
+    color: '#3f64e5',
+  },
   formControl: {
     fontSize: '0.5rem',
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '37%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#3f64e5',
   },
   textField: {
     marginTop: theme.spacing(3),
@@ -68,6 +80,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(0),
     width: '100%',
   },
+  containerImage: {
+    width: '50%',
+  },
+  image: {
+    width: '40rem',
+    height: '40rem'
+  }
 }));
 
 export default function SignUpRecruiter({ history }) {
@@ -151,16 +170,15 @@ export default function SignUpRecruiter({ history }) {
   return (
     <div
       style={{
-        display: 'flex',
+        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
       }}
     >
+      <PageHeader />
       <Container component="main" maxWidth="lg">
         <Grid
           style={{
@@ -172,19 +190,20 @@ export default function SignUpRecruiter({ history }) {
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            backgroundSize: 'cover',
           }}
         >
-          <Grid item xs={12} sm={9} md={8} lg={7}>
+          <Grid item xs={12} md={12} lg={12}>
             <Card>
               <CssBaseline />
-              <div className={classes.paper}>
-                <Typography component="h1" variant="h5">
-                  Cadastro de Candidatos
+
+              <Typography className={classes.titulo} component="h1" variant="h5">
+                Candidato, inscreva-se abaixo!
                 </Typography>
+
+              <div className={classes.paper}>
                 <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={5} lg={5}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         autoComplete="fname"
                         name="fullName"
@@ -198,7 +217,7 @@ export default function SignUpRecruiter({ history }) {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         autoComplete="user"
                         name="user"
@@ -212,20 +231,7 @@ export default function SignUpRecruiter({ history }) {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={3}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Senha"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        onChange={e => setPassword(e.target.value)}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -238,7 +244,7 @@ export default function SignUpRecruiter({ history }) {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
@@ -250,21 +256,36 @@ export default function SignUpRecruiter({ history }) {
                         onChange={e => setDocument(e.target.value)}
                       />
                     </Grid>
-                    <Grid item xs={12} md={4}>
-                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                          disableToolbar
-                          variant="inline"
-                          format="dd/MM/yyyy"
-                          margin="normal"
-                          id="date-picker-inline"
-                          label="Data de Aniversário"
-                          value={selectedDate}
-                          onChange={e => setbirthDate(e.target.value)}
-                        />
-                      </MuiPickersUtilsProvider>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange={e => setPassword(e.target.value)}
+                      />
                     </Grid>
-                    <Grid item xs={12} md={3}>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Confirmar senha"
+                        type="confirmPassword"
+                        id="confirmPassword"
+                        autoComplete="current-password"
+                        onChange={e => setPassword(e.target.value)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={6} lg={6}>
                       <FormControl
                         variant="outlined"
                         className={classes.formControl}
@@ -289,19 +310,23 @@ export default function SignUpRecruiter({ history }) {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} md={5}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="City"
-                        label="Cidade"
-                        name="City"
-                        autoComplete="City"
-                        onChange={e => setCity(e.target.value)}
-                      />
+
+                    <Grid item xs={12} md={6} lg={6}>
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                          disableToolbar
+                          variant="inline"
+                          format="dd/MM/yyyy"
+                          margin="normal"
+                          id="date-picker-inline"
+                          label="Data de nascimento"
+                          value={selectedDate}
+                          onChange={e => setbirthDate(e.target.value)}
+                        />
+                      </MuiPickersUtilsProvider>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+
+                    <Grid item xs={12} md={6}>
                       <FormControl
                         variant="outlined"
                         className={classes.formControl}
@@ -349,6 +374,20 @@ export default function SignUpRecruiter({ history }) {
                         </Select>
                       </FormControl>
                     </Grid>
+
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="City"
+                        label="Cidade"
+                        name="City"
+                        autoComplete="City"
+                        onChange={e => setCity(e.target.value)}
+                      />
+                    </Grid>
+
                     <Grid item xs={12} md={4}>
                       <TextField
                         autoComplete="profission"
@@ -421,14 +460,19 @@ export default function SignUpRecruiter({ history }) {
                     </Grid>
                   </Grid>
                 </form>
+                <Container className={classes.containerImage}>
+                  <img className={classes.image} src={loginImage} />
+                </Container>
               </div>
+
             </Card>
           </Grid>
         </Grid>
       </Container>
-      <Box mt={5}>
+      <PageFooter />
+      {/* <Box mt={5}>
         <Copyright />
-      </Box>
+      </Box> */}
     </div>
   );
 }
