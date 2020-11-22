@@ -102,7 +102,7 @@ export default function SignUpRecruiter({ history }) {
   const [stateUF, setStateUF] = useState('');
   const [profission, setProfission] = useState('');
   const [nivel, setNivel] = useState('');
-  const [pretenssion, setPretenssion] = useState('');
+  const [pretension, setPretension] = useState('');
 
   const [value, setValue] = React.useState('');
 
@@ -111,7 +111,7 @@ export default function SignUpRecruiter({ history }) {
       data: {
         profission,
         nivel,
-        pretenssion,
+        pretension,
       },
     }).catch(err => console.log(err.response.data));
     const user = await storeUser({
@@ -417,15 +417,15 @@ export default function SignUpRecruiter({ history }) {
 
                     <Grid item xs={12} md={4}>
                       <TextField
-                        autoComplete="pretenssion"
-                        name="pretenssion"
+                        autoComplete="pretension"
+                        name="pretension"
                         variant="outlined"
                         required
                         fullWidth
-                        id="pretenssion"
+                        id="pretension"
                         label="Pretensão Salarial"
                         autoFocus
-                        onChange={e => setPretenssion(e.target.value)}
+                        onChange={e => setPretension(e.target.value)}
                       />
                     </Grid>
                   </Grid>

@@ -75,13 +75,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn({ history }) {
   const classes = useStyles();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
     const login = await Login({
       data: {
-        username,
+        email,
         password,
       },
     }).catch(err => console.log(err.response.data));
@@ -105,13 +105,13 @@ export default function SignIn({ history }) {
   return (
     <div
       style={{
-        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
+        // display: 'flex',
         // backgroundImage: `url(${bgimg})`,
       }}
     >
@@ -140,12 +140,12 @@ export default function SignIn({ history }) {
               margin="normal"
               required
               fullWidth
-              id="user"
-              label="Usuário"
-              name="user"
-              autoComplete="user"
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
               autoFocus
-              onChange={e => setUsername(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -176,7 +176,7 @@ export default function SignIn({ history }) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => handleJobs()}
+              onClick={() => handleSubmit()}
             >
               Acessar conta
             </Button>
