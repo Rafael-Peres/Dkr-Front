@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker,
+  DatePicker,
 } from '@material-ui/pickers';
 
 import Select from '@material-ui/core/Select';
@@ -141,8 +141,8 @@ export default function SignUpRecruiter({ history }) {
     }).catch(err => console.log(err.response.data));
   };
 
-  const handleOption = event => {
-    history.push('/signup/option');
+  const handleSignupCandidate = async () => {
+    history.push('/signup/candidate');
   };
 
   const inputLabel = React.useRef(null);
@@ -171,13 +171,7 @@ export default function SignUpRecruiter({ history }) {
     history.push('/signin');
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date('2014-08-18T21:11:54')
-  );
-
-  const handleDateChange = date => {
-    setSelectedDate(date);
-  };
+  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <div
@@ -326,15 +320,14 @@ export default function SignUpRecruiter({ history }) {
 
                     <Grid item xs={12} md={6} lg={6}>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                          disableToolbar
-                          variant="inline"
+                      <DatePicker
+                          disableFuture
+                          openTo="year"
                           format="dd/MM/yyyy"
-                          margin="normal"
-                          id="date-picker-inline"
                           label="Data de nascimento"
+                          views={['year', 'month', 'date']}
                           value={selectedDate}
-                          onChange={e => setbirthDate(e.target.value)}
+                          onChange={handleDateChange}
                         />
                       </MuiPickersUtilsProvider>
                     </Grid>
@@ -424,11 +417,11 @@ export default function SignUpRecruiter({ history }) {
                   <Grid container justify="flex-end">
                     <Grid item xs>
                       <Link
-                        onClick={() => handleOption()}
-                        variant="option"
+                        onClick={() => handleSignupCandidate()}
+                        variant="candidate"
                         style={{ cursor: 'pointer' }}
                       >
-                        Voltar
+                        Candidato
                       </Link>
                     </Grid>
                     <Grid item>

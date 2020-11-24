@@ -95,7 +95,7 @@ export default function SignIn({ history }) {
   };
 
   const handleSignup = async () => {
-    history.push('/signup/option');
+    history.push('/signup/candidate');
   };
 
   const handleForgot = async () => {
@@ -112,7 +112,6 @@ export default function SignIn({ history }) {
         flexDirection: 'column',
         backgroundSize: 'cover',
         // display: 'flex',
-        // backgroundImage: `url(${bgimg})`,
       }}
     >
       <PageHeader />
@@ -120,7 +119,6 @@ export default function SignIn({ history }) {
         component="main"
         // maxWidth="md"
         style={{
-          // boxShadow: '0px 0px 3px #AAA',
           padding: 15,
           borderRadius: 5,
           backgroundColor: '#FFF',
@@ -133,7 +131,7 @@ export default function SignIn({ history }) {
               Bem Vindo(a)!
             </Typography>
             <Typography component="subtitle1" variant="h5" color="inherit">
-              Faça login ou cadastre-se para <br /> se candidatar a uma vaga.
+              Faça login ou cadastre-se na <br /> nossa plataforma.
             </Typography>
             <TextField
               variant="outlined"

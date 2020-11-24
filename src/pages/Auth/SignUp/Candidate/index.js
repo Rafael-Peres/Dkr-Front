@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
+  DatePicker,
 } from '@material-ui/pickers';
 
 import Select from '@material-ui/core/Select';
@@ -85,8 +86,8 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: '40rem',
-    height: '40rem'
-  }
+    height: '40rem',
+  },
 }));
 
 export default function SignUpRecruiter({ history }) {
@@ -95,42 +96,45 @@ export default function SignUpRecruiter({ history }) {
   const [password, setPassword] = useState('');
   const [fullName, setFullname] = useState('');
   const [email, setEmail] = useState('');
+  // const [candidateId, setCandidateId] = useState('')
   const [document, setDocument] = useState('');
   const [birthDate, setbirthDate] = useState('');
   const [gender, setGender] = useState('');
   const [city, setCity] = useState('');
   const [stateUF, setStateUF] = useState('');
-  const [profission, setProfission] = useState('');
-  const [nivel, setNivel] = useState('');
-  const [pretension, setPretension] = useState('');
+  const [profession, setProfession] = useState('');
+  const [levelTraining, setLevelTraining] = useState('');
+  const [pretense, setPretense] = useState('');
 
   const [value, setValue] = React.useState('');
 
   const handleSubmit = async () => {
     const candidate = await storeCandidate({
       data: {
-        profission,
-        nivel,
-        pretension,
+        profession,
+        levelTraining,
+        pretense,
       },
     }).catch(err => console.log(err.response.data));
+    console.log(candidate);
     const user = await storeUser({
       data: {
-        username,
-        password,
-        fullName,
-        email,
-        document,
-        birthDate,
-        gender,
-        stateUF,
-        city,
+        username: "react",
+        password: "12345",
+        fullName: "test",
+        email: "test",
+        candidateId: 9,
+        document: "test-mock",
+        birthDate: '2014-08-18T21:11:54',
+        gender: "Masculino",
+        stateUF: "São Paulo",
+        city: "aruja",
       },
     }).catch(err => console.log(err.response.data));
   };
 
-  const handleOption = event => {
-    history.push('/signup/option');
+  const handleSignupRecruiter = async () => {
+    history.push('/signup/recruiter');
   };
 
   const inputLabel = React.useRef(null);
@@ -159,18 +163,11 @@ export default function SignUpRecruiter({ history }) {
     history.push('/signin');
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date('2014-08-18T21:11:54')
-  );
-
-  const handleDateChange = date => {
-    setSelectedDate(date);
-  };
+  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <div
       style={{
-        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
@@ -196,9 +193,13 @@ export default function SignUpRecruiter({ history }) {
             <Card>
               <CssBaseline />
 
-              <Typography className={classes.titulo} component="h1" variant="h5">
+              <Typography
+                className={classes.titulo}
+                component="h1"
+                variant="h5"
+              >
                 Candidato, inscreva-se abaixo!
-                </Typography>
+              </Typography>
 
               <div className={classes.paper}>
                 <form className={classes.form} noValidate>
@@ -249,10 +250,10 @@ export default function SignUpRecruiter({ history }) {
                         variant="outlined"
                         required
                         fullWidth
-                        id="Document"
+                        id="document"
                         label="CPF/CNPJ"
-                        name="Document"
-                        autoComplete="Document"
+                        name="document"
+                        autoComplete="document"
                         onChange={e => setDocument(e.target.value)}
                       />
                     </Grid>
@@ -313,15 +314,14 @@ export default function SignUpRecruiter({ history }) {
 
                     <Grid item xs={12} md={6} lg={6}>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                          disableToolbar
-                          variant="inline"
+                        <DatePicker
+                          disableFuture
+                          openTo="year"
                           format="dd/MM/yyyy"
-                          margin="normal"
-                          id="date-picker-inline"
                           label="Data de nascimento"
+                          views={['year', 'month', 'date']}
                           value={selectedDate}
-                          onChange={e => setbirthDate(e.target.value)}
+                          onChange={handleDateChange}
                         />
                       </MuiPickersUtilsProvider>
                     </Grid>
@@ -390,63 +390,63 @@ export default function SignUpRecruiter({ history }) {
 
                     <Grid item xs={12} md={4}>
                       <TextField
-                        autoComplete="profission"
-                        name="profission"
+                        autoComplete="profession"
+                        name="profession"
                         variant="outlined"
                         required
                         fullWidth
-                        id="profission"
+                        id="profession"
                         label="Profissão"
                         autoFocus
-                        onChange={e => setProfission(e.target.value)}
+                        onChange={e => setProfession(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <TextField
-                        autoComplete="nivel"
-                        name="nivel"
+                        autoComplete="levelTraining"
+                        name="levelTraining"
                         variant="outlined"
                         required
                         fullWidth
-                        id="nivel"
+                        id="levelTraining"
                         label="Nível"
                         autoFocus
-                        onChange={e => setNivel(e.target.value)}
+                        onChange={e => setLevelTraining(e.target.value)}
                       />
                     </Grid>
 
                     <Grid item xs={12} md={4}>
                       <TextField
-                        autoComplete="pretension"
-                        name="pretension"
+                        autoComplete="pretense"
+                        name="pretense"
                         variant="outlined"
                         required
                         fullWidth
-                        id="pretension"
+                        id="pretense"
                         label="Pretensão Salarial"
                         autoFocus
-                        onChange={e => setPretension(e.target.value)}
+                        onChange={e => setPretense(e.target.value)}
                       />
                     </Grid>
                   </Grid>
                   <Button
-                    type="submit"
+                    // type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    onClick={() => handleSignin()}
+                    onClick={() => handleSubmit()}
                   >
                     Cadastrar
                   </Button>
                   <Grid container justify="flex-end">
                     <Grid item xs>
                       <Link
-                        onClick={() => handleOption()}
-                        variant="option"
+                        onClick={() => handleSignupRecruiter()}
+                        variant="recruiter"
                         style={{ cursor: 'pointer' }}
                       >
-                        Voltar
+                        Recrutador
                       </Link>
                     </Grid>
                     <Grid item>
@@ -464,7 +464,6 @@ export default function SignUpRecruiter({ history }) {
                   <img className={classes.image} src={loginImage} />
                 </Container>
               </div>
-
             </Card>
           </Grid>
         </Grid>
