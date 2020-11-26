@@ -1,33 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import {
+  MuiPickersUtilsProvider,
+  DatePicker,
+} from '@material-ui/pickers';
+
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import DateFnsUtils from '@date-io/date-fns';
+import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import { Card } from '../../../components/Card';
-import bgimg from '../../../assets/carteira.jpg';
+import { storeCandidate } from '../../../services/requests/candidates';
+import { storeUser } from '../../../services/requests/users';
+import { TextareaAutosize } from '@material-ui/core';
 
-function Copyright() {
-  return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      align="center"
-      style={{
-        fontWeight: 'bolder',
-        color: '#4F4F4F',
-      }}
-    >
-      Copyright © Seinn - Selection e Innovation {new Date().getFullYear()}.
-    </Typography>
-  );
-}
+
+import rhImage from '../../../assets/RHIlustration.svg';
+
+import PageHeader from '../../../components/Header';
+import PageFooter from '../../../components/Footer';
+
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -35,29 +35,27 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
-  paper: {
-    marginTop: theme.spacing(8),
+  titulo: {
     display: 'flex',
-    flexDirection: 'column',
+    alignContent: 'center',
+    color: '#3f64e5',
+  },
+  formControl: {
+    fontSize: '0.5rem',
+  },
+  paper: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '37%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
-  FormControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(3),
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    backgroundColor: '#3f64e5',
   },
   textField: {
     marginTop: theme.spacing(3),
@@ -66,14 +64,69 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     marginTop: theme.spacing(0),
     width: '100%',
-    fontSize: '0.5rem',
   },
+  containerImage: {
+    width: '50%',
+  },
+  image: {
+    width: '40rem',
+    height: '40rem'
+  },
+  textArea: {
+    width: '100%',
+    height: '16rem',
+    minHeight: '8rem',
+    marginTop: '0.8rem',
+    borderRadius: '0.3rem',
+    outline: 0,
+    resize: 'none',
+    border: '2px solid #DCDCDC'
+  }
 }));
 
-export default function SignUp({ history }) {
+export default function SignUpRecruiter({ history }) {
   const classes = useStyles();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [document, setDocument] = useState('');
+  const [birthDate, setbirthDate] = useState('');
+  const [gender, setGender] = useState('');
+  const [city, setCity] = useState('');
+  const [stateUF, setStateUF] = useState('');
+  const [profission, setProfission] = useState('');
+  const [nivel, setNivel] = useState('');
+  const [pretenssion, setPretenssion] = useState('');
 
   const [value, setValue] = React.useState('');
+
+  const handleSubmit = async () => {
+    const candidate = await storeCandidate({
+      data: {
+        profission,
+        nivel,
+        pretenssion,
+      },
+    }).catch(err => console.log(err.response.data));
+    const user = await storeUser({
+      data: {
+        username,
+        password,
+        fullName,
+        email,
+        document,
+        birthDate,
+        gender,
+        stateUF,
+        city,
+      },
+    }).catch(err => console.log(err.response.data));
+  };
+
+  const handleSignupCandidate = async () => {
+    history.push('/signup/candidate');
+  };
 
   const inputLabel = React.useRef(null);
   const [state, setState] = React.useState({
@@ -93,29 +146,28 @@ export default function SignUp({ history }) {
     });
   };
 
-  const handleJobs = async () => {
-    history.push('/jobs');
+  const handleChangeLetter = event => {
+    setValue(event.target.value);
   };
 
-  const [setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
-  const handleDateChange = date => {
-    setSelectedDate(date);
+  const handleSignin = async () => {
+    history.push('/signin');
   };
+
+  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <div
       style={{
-        display: 'flex',
+        // display: 'flex',
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
       }}
     >
+      <PageHeader />
       <Container component="main" maxWidth="lg">
         <Grid
           style={{
@@ -123,146 +175,98 @@ export default function SignUp({ history }) {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            margin: '20px auto'
           }}
         >
-          <Grid item xs={12} sm={9} md={8} lg={7}>
-            <Card>
+          <Grid item xs={12} md={12} lg={12}>
+            <Card style={{ boxShadow: 'none' }}>
               <CssBaseline />
-              <div className={classes.paper}>
-                <Typography component="h1" variant="h5">
-                  Cadastro de Vagas
+
+              <Typography className={classes.titulo} component="h1" variant="h5">
+                Dados da empresa
                 </Typography>
+
+              <div className={classes.paper}>
                 <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={8} lg={8}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
-                        autoComplete="title"
-                        name="title"
+                        autoComplete="fname"
+                        name="fullName"
                         variant="outlined"
                         required
                         fullWidth
-                        id="title"
-                        label="Título da vaga"
+                        id="fullName"
+                        label="Insira o nome da empresa aqui"
                         autoFocus
+                        onChange={e => setFullname(e.target.value)}
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
-                        autoComplete="company"
-                        name="company"
+                        autoComplete="user"
+                        name="user"
                         variant="outlined"
                         required
                         fullWidth
-                        id="company"
-                        label="Empresa"
+                        id="user"
+                        label="Seguimento"
                         autoFocus
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={8}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="benefits"
-                        label="Benefícios"
-                        name="benefits"
-                        autoComplete="benefits"
+                        onChange={e => setUsername(e.target.value)}
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={12} lg={12}>
                       <TextField
                         variant="outlined"
                         required
                         fullWidth
-                        id="salary"
-                        label="Salário"
-                        name="salary"
-                        autoComplete="salary"
+                        id="Document"
+                        label="Cargo"
+                        name="Document"
+                        autoComplete="Document"
+                        onChange={e => setDocument(e.target.value)}
                       />
                     </Grid>
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="workSchedule"
-                        label="Horário de trabalho"
-                        name="workSchedule"
-                        autoComplete="workSchedule"
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={5}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="City"
-                        label="Cidade"
-                        name="City"
-                        autoComplete="City"
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={3}>
+
+                    <Grid item xs={12} md={12} lg={12}>
                       <FormControl
                         variant="outlined"
                         className={classes.formControl}
                       >
-                        <InputLabel ref={inputLabel} htmlFor="state">
-                          Estados
+                        <InputLabel ref={inputLabel} htmlFor="porte">
+                          Porte
                         </InputLabel>
                         <Select
                           native
-                          value={state.state}
-                          onChange={handleChange('state')}
+                          value={state.gender}
+                          onChange={e => setGender(e.target.value)}
                           labelWidth={labelWidth}
                           inputProps={{
-                            name: 'state',
-                            id: 'state',
+                            name: 'porte',
+                            id: 'porte',
                           }}
                         >
                           <option value="   " />
-                          <option value={1}>Acre</option>
-                          <option value={2}>Alagoas</option>
-                          <option value={3}>Amazonas</option>
-                          <option value={4}>Bahia</option>
-                          <option value={5}>Ceará</option>
-                          <option value={6}>Distrito Federal</option>
-                          <option value={7}>Espírito Santo</option>
-                          <option value={8}>Goiás</option>
-                          <option value={9}>Maranhão</option>
-                          <option value={10}>Mato Grosso</option>
-                          <option value={11}>Mato Grosso Do Sul</option>
-                          <option value={12}>Minas Gerais</option>
-                          <option value={13}>Pará</option>
-                          <option value={14}>Paraíba</option>
-                          <option value={15}>Paraná</option>
-                          <option value={16}>Pernanbuco</option>
-                          <option value={17}>Piauí</option>
-                          <option value={18}>Rio de Janeiro</option>
-                          <option value={19}>Rio Grande do Norte</option>
-                          <option value={20}>Rio Grande do Sul</option>
-                          <option value={21}>Rondônia</option>
-                          <option value={22}>Roraima</option>
-                          <option value={23}>Santa Catarina</option>
-                          <option value={24}>São Paulo</option>
-                          <option value={25}>Sergipe</option>
-                          <option value={26}>Tocantins</option>
+                          <option value={10}>Pequena</option>
+                          <option value={20}>Média</option>
+                          <option value={30}>Grande</option>
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        id="description"
-                        label="Descrição"
-                        multiline
-                        rowsMax="4"
-                        value={value}
-                        onChange={handleChange}
-                        className={classes.textField}
-                        margin="normal"
-                        variant="outlined"
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextareaAutosize
+                        className={classes.textArea}
+                        rowsMax={6}
+                        aria-label="maximum height"
+                        placeholder="Descrição da vaga"
+                        defaultValue=""
                       />
                     </Grid>
                   </Grid>
@@ -272,19 +276,20 @@ export default function SignUp({ history }) {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    onClick={() => handleJobs()}
+                    onClick={() => handleSignin()}
                   >
                     Cadastrar
                   </Button>
                 </form>
+                <Container className={classes.containerImage}>
+                  <img className={classes.image} src={rhImage} />
+                </Container>
               </div>
             </Card>
           </Grid>
         </Grid>
       </Container>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </div>
+      <PageFooter />
+    </div >
   );
 }

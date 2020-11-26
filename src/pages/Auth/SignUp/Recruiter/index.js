@@ -17,7 +17,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import bgimg from '../../../../assets/carteira.jpg';
 import { Card } from '../../../../components/Card';
 import { storeCandidate } from '../../../../services/requests/candidates';
 import { storeUser } from '../../../../services/requests/users';
@@ -28,23 +27,7 @@ import loginImage from '../../../../assets/loginIlustration.svg';
 
 import PageHeader from '../../../../components/Header';
 import PageFooter from '../../../../components/Footer';
-import { BorderAll } from '@material-ui/icons';
 
-function Copyright() {
-  return (
-    <Typography
-      variant="body2"
-      color="textSecondary"
-      align="center"
-      style={{
-        fontWeight: 'bolder',
-        color: '#4F4F4F',
-      }}
-    >
-      Copyright © Seinn - Selection e Innovation {new Date().getFullYear()}.
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -200,7 +183,7 @@ export default function SignUpRecruiter({ history }) {
           }}
         >
           <Grid item xs={12} md={12} lg={12}>
-            <Card>
+            <Card style={{ boxShadow: 'none' }}>
               <CssBaseline />
 
               <Typography className={classes.titulo} component="h1" variant="h5">
@@ -320,7 +303,7 @@ export default function SignUpRecruiter({ history }) {
 
                     <Grid item xs={12} md={6} lg={6}>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <DatePicker
+                        <DatePicker
                           disableFuture
                           openTo="year"
                           format="dd/MM/yyyy"

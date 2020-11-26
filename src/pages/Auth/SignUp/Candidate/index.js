@@ -190,7 +190,7 @@ export default function SignUpRecruiter({ history }) {
           }}
         >
           <Grid item xs={12} md={12} lg={12}>
-            <Card>
+            <Card style={{ boxShadow: 'none' }}>
               <CssBaseline />
 
               <Typography
@@ -472,6 +472,6 @@ export default function SignUpRecruiter({ history }) {
       {/* <Box mt={5}>
         <Copyright />
       </Box> */}
-    </div>
+    </div >
   );
 }
