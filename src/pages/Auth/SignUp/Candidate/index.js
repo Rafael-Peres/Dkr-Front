@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUpRecruiter({ history }) {
+export default function SignUpCandidate({ history }) {
   const classes = useStyles();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -116,19 +116,18 @@ export default function SignUpRecruiter({ history }) {
         pretense,
       },
     }).catch(err => console.log(err.response.data));
-    console.log(candidate);
     const user = await storeUser({
       data: {
-        username: "react",
-        password: "12345",
-        fullName: "test",
-        email: "test",
-        candidateId: 9,
-        document: "test-mock",
+        username,
+        password,
+        fullName,
+        email,
+        candidateId: candidate.data.id,
+        document,
         birthDate: '2014-08-18T21:11:54',
-        gender: "Masculino",
-        stateUF: "São Paulo",
-        city: "aruja",
+        gender: 'Masculino',
+        state: stateUF,
+        city,
       },
     }).catch(err => console.log(err.response.data));
   };
@@ -472,6 +471,6 @@ export default function SignUpRecruiter({ history }) {
       {/* <Box mt={5}>
         <Copyright />
       </Box> */}
-    </div >
+    </div>
   );
 }

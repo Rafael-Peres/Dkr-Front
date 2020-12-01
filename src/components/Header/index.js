@@ -11,10 +11,18 @@ class PageHeader extends Component {
           <div className="pageheader-menu">
             <span>reseinn</span>
             <ul>
-              <li><Link>Vagas</Link></li>
-              <li><Link>Sobre</Link></li>
-              <li><Link>Blog</Link></li>
-              <li><Link>Contato</Link></li>
+              <li>
+                <Link>Vagas</Link>
+              </li>
+              <li>
+                <Link>Sobre</Link>
+              </li>
+              <li>
+                <Link>Blog</Link>
+              </li>
+              <li>
+                <Link>Contato</Link>
+              </li>
             </ul>
           </div>
 

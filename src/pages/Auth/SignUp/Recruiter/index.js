@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import {
-  MuiPickersUtilsProvider,
-  DatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,16 +15,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Card } from '../../../../components/Card';
-import { storeCandidate } from '../../../../services/requests/candidates';
+import { storeRecruiter } from '../../../../services/requests/recruiters';
 import { storeUser } from '../../../../services/requests/users';
 import { TextareaAutosize } from '@material-ui/core';
-
 
 import loginImage from '../../../../assets/loginIlustration.svg';
 
 import PageHeader from '../../../../components/Header';
 import PageFooter from '../../../../components/Footer';
-
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -70,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     width: '40rem',
-    height: '40rem'
+    height: '40rem',
   },
   textArea: {
     width: '100%',
@@ -80,8 +75,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '0.3rem',
     outline: 0,
     resize: 'none',
-    border: '2px solid #DCDCDC'
-  }
+    border: '2px solid #DCDCDC',
+  },
 }));
 
 export default function SignUpRecruiter({ history }) {
@@ -95,18 +90,14 @@ export default function SignUpRecruiter({ history }) {
   const [gender, setGender] = useState('');
   const [city, setCity] = useState('');
   const [stateUF, setStateUF] = useState('');
-  const [profission, setProfission] = useState('');
-  const [nivel, setNivel] = useState('');
-  const [pretenssion, setPretenssion] = useState('');
+  const [presentationLetter, setPresentationLetter] = useState('');
 
   const [value, setValue] = React.useState('');
 
   const handleSubmit = async () => {
-    const candidate = await storeCandidate({
+    const recruiter = await storeRecruiter({
       data: {
-        profission,
-        nivel,
-        pretenssion,
+        presentationLetter,
       },
     }).catch(err => console.log(err.response.data));
     const user = await storeUser({
@@ -116,10 +107,11 @@ export default function SignUpRecruiter({ history }) {
         fullName,
         email,
         document,
-        birthDate,
-        gender,
-        stateUF,
+        birthDate: '2014-08-18T21:11:54',
+        gender: 'Masculino',
+        state: stateUF,
         city,
+        recruiterId: recruiter.data.id,
       },
     }).catch(err => console.log(err.response.data));
   };
@@ -179,16 +171,20 @@ export default function SignUpRecruiter({ history }) {
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            margin: '20px auto'
+            margin: '20px auto',
           }}
         >
           <Grid item xs={12} md={12} lg={12}>
             <Card style={{ boxShadow: 'none' }}>
               <CssBaseline />
 
-              <Typography className={classes.titulo} component="h1" variant="h5">
+              <Typography
+                className={classes.titulo}
+                component="h1"
+                variant="h5"
+              >
                 Recrutador, inscreva-se abaixo!
-                </Typography>
+              </Typography>
 
               <div className={classes.paper}>
                 <form className={classes.form} noValidate>
@@ -388,12 +384,12 @@ export default function SignUpRecruiter({ history }) {
                     </Grid>
                   </Grid>
                   <Button
-                    type="submit"
+                    // type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    onClick={() => handleSignin()}
+                    onClick={() => handleSubmit()}
                   >
                     Cadastrar
                   </Button>
@@ -430,6 +426,6 @@ export default function SignUpRecruiter({ history }) {
       {/* <Box mt={5}>
         <Copyright />
       </Box> */}
-    </div >
+    </div>
   );
 }

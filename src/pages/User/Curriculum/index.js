@@ -10,15 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Card } from '../../../components/Card';
-import { storeCandidate } from '../../../services/requests/candidates';
-import { storeUser } from '../../../services/requests/users';
+import { storeCurriculum } from '../../../services/requests/curriculums';
 import { TextareaAutosize } from '@material-ui/core';
 
 import rhImage from '../../../assets/RHIlustration.svg';
 
 import PageHeader from '../../../components/Header';
 import PageFooter from '../../../components/Footer';
-import { storeJob } from '../../../services/requests/jobs';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -35,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '0.5rem',
   },
   paper: {
-    marginTop: theme.spacing(2),
+    // marginTop: theme.spacing(2),
     display: 'flex',
     alignItems: 'center',
     overflow: 'hidden',
@@ -75,26 +73,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function JobsRegister({ history }) {
+export default function Curriculum({ history }) {
   const classes = useStyles();
+  const [telephone, setTelephone] = useState('');
+  const [cellPhone, setCellPhone] = useState('');
+  const [interest, setInterest] = useState('');
+  const [professionalGoal, setProfessionalGoal] = useState('');
+  const [professionalResume, setProfessionalResume] = useState('');
+  const [course, setCourse] = useState('');
   const [company, setCompany] = useState('');
-  const [title, setTitle] = useState('');
-  const [salary, setSalary] = useState('');
-  const [city, setCity] = useState('');
-  const [stateUF, setStateUF] = useState('');
-  const [description, setDescription] = useState('');
 
   const [value, setValue] = React.useState('');
 
   const handleSubmit = async () => {
-    await storeJob({
+    const curriculum = await storeCurriculum({
       data: {
+        cellPhone,
+        interest,
+        telephone,
+        professionalGoal,
+        professionalResume,
+        course,
         company,
-        title,
-        salary,
-        state: stateUF,
-        city,
-        description,
       },
     }).catch(err => console.log(err.response.data));
   };
@@ -105,11 +105,6 @@ export default function JobsRegister({ history }) {
     name: 'hai',
   });
 
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
-
   const handleChange = name => event => {
     setState({
       ...state,
@@ -119,10 +114,6 @@ export default function JobsRegister({ history }) {
 
   const handleChangeLetter = event => {
     setValue(event.target.value);
-  };
-
-  const handleSignin = async () => {
-    history.push('/signin');
   };
 
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -162,7 +153,7 @@ export default function JobsRegister({ history }) {
                 component="h1"
                 variant="h5"
               >
-                Dados da empresa
+                Meu Currículo
               </Typography>
 
               <div className={classes.paper}>
@@ -170,120 +161,95 @@ export default function JobsRegister({ history }) {
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={12} lg={12}>
                       <TextField
-                        autoComplete="company"
-                        name="company"
+                        autoComplete="telephone"
+                        name="telephone"
+                        variant="outlined"
+                        fullWidth
+                        id="telephone"
+                        label="Telefone"
+                        autoFocus
+                        onChange={e => setTelephone(e.target.value)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        autoComplete="cellPhone"
+                        name="cellPhone"
                         variant="outlined"
                         required
+                        fullWidth
+                        id="cellPhone"
+                        label="Celular"
+                        autoFocus
+                        onChange={e => setCellPhone(e.target.value)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        autoComplete="interest"
+                        name="interest"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="interest"
+                        label="Interesses"
+                        autoFocus
+                        onChange={e => setInterest(e.target.value)}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="professionalGoal"
+                        label="Objetivos Profissionais"
+                        name="professionalGoal"
+                        autoComplete="professionalGoal"
+                        onChange={e => setProfessionalGoal(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="professionalResume"
+                        label="Resumo Profissional"
+                        name="professionalResume"
+                        autoComplete="professionalResume"
+                        onChange={e => setProfessionalResume(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="course"
+                        label="Graduação"
+                        name="course"
+                        autoComplete="course"
+                        onChange={e => setCourse(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={12}>
+                      <TextField
+                        variant="outlined"
                         fullWidth
                         id="company"
-                        label="Insira o nome da empresa aqui"
-                        autoFocus
+                        label="Ultima Empresa"
+                        name="company"
+                        autoComplete="company"
                         onChange={e => setCompany(e.target.value)}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={12} lg={12}>
-                      <TextField
-                        autoComplete="title"
-                        name="title"
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="title"
-                        label="Vaga"
-                        autoFocus
-                        onChange={e => setTitle(e.target.value)}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={12} lg={12}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="salary"
-                        label="Salário"
-                        name="salary"
-                        autoComplete="salary"
-                        onChange={e => setSalary(e.target.value)}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <FormControl
-                        variant="outlined"
-                        className={classes.formControl}
-                      >
-                        <InputLabel ref={inputLabel} htmlFor="state">
-                          Estados
-                        </InputLabel>
-                        <Select
-                          native
-                          value={state.state}
-                          onChange={e => setStateUF(e.target.value)}
-                          labelWidth={labelWidth}
-                          inputProps={{
-                            name: 'state',
-                            id: 'state',
-                          }}
-                        >
-                          <option value="   " />
-                          <option value={1}>Acre</option>
-                          <option value={2}>Alagoas</option>
-                          <option value={3}>Amazonas</option>
-                          <option value={4}>Bahia</option>
-                          <option value={5}>Ceará</option>
-                          <option value={6}>Distrito Federal</option>
-                          <option value={7}>Espírito Santo</option>
-                          <option value={8}>Goiás</option>
-                          <option value={9}>Maranhão</option>
-                          <option value={10}>Mato Grosso</option>
-                          <option value={11}>Mato Grosso Do Sul</option>
-                          <option value={12}>Minas Gerais</option>
-                          <option value={13}>Pará</option>
-                          <option value={14}>Paraíba</option>
-                          <option value={15}>Paraná</option>
-                          <option value={16}>Pernanbuco</option>
-                          <option value={17}>Piauí</option>
-                          <option value={18}>Rio de Janeiro</option>
-                          <option value={19}>Rio Grande do Norte</option>
-                          <option value={20}>Rio Grande do Sul</option>
-                          <option value={21}>Rondônia</option>
-                          <option value={22}>Roraima</option>
-                          <option value={23}>Santa Catarina</option>
-                          <option value={24}>São Paulo</option>
-                          <option value={25}>Sergipe</option>
-                          <option value={26}>Tocantins</option>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="City"
-                        label="Cidade"
-                        name="City"
-                        autoComplete="City"
-                        onChange={e => setCity(e.target.value)}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={12} lg={12}>
-                      <TextareaAutosize
-                        className={classes.textArea}
-                        rowsMax={6}
-                        aria-label="maximum height"
-                        placeholder="Descrição da vaga"
-                        defaultValue=""
-                        onChange={e => setDescription(e.target.value)}
                       />
                     </Grid>
                   </Grid>
                   <Button
-                    // type="submit"
+                    type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"
