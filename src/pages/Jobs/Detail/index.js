@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Card } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import {
   Container,
@@ -29,6 +30,10 @@ const useStyles = makeStyles(theme => ({
     body: {
       backgroundColor: theme.palette.common.white,
     },
+  },
+
+  card: {
+    padding: "5rem",
   },
 
   buscaContainer: {
@@ -107,7 +112,7 @@ export default function JobList({ history }) {
       <PageHeader />
       <Grid>
         <Container className={classes.vagasContainer}>
-          <div>
+          <Card className={classes.card}>
             <Typography
               component="h1"
               variant="h5"
@@ -155,7 +160,7 @@ export default function JobList({ history }) {
               survived not only five centuries, but also the leap into
               electronic typesetting, remaining essentially unchanged.
             </Typography>
-          </div>
+          </Card>
         </Container>
       </Grid>
       <PageFooter />
