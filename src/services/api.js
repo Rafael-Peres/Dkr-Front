@@ -1,8 +1,8 @@
-import axios from "axios";
-import { getToken } from "./auth";
+import axios from 'axios';
+import { getToken } from './auth';
 
 const api = axios.create({
-  baseURL: "https://reseinn-api.herokuapp.com/"
+  baseURL: 'https://reseinn-api.herokuapp.com/',
 });
 
 api.interceptors.request.use(async config => {

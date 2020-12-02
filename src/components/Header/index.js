@@ -12,7 +12,7 @@ class PageHeader extends Component {
             <span>reseinn</span>
             <ul>
               <li>
-                <Link>Vagas</Link>
+                <Link to="/jobs">Vagas</Link>
               </li>
               <li>
                 <Link>Sobre</Link>
@@ -27,7 +27,7 @@ class PageHeader extends Component {
           </div>
 
           <div className="buttons-container">
-            <Link>Área do candidato</Link>
+            <Link to="/candidates">Área do candidato</Link>
             <Link>Área do recrutador</Link>
           </div>
         </div>

@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import zIndex from '@material-ui/core/styles/zIndex';
-import bgimg from '../../../assets/carteira.jpg';
 import { Forgot } from '../../../services/requests/auth';
 
 function Copyright() {
@@ -131,7 +130,6 @@ export default function SignForgot({ history }) {
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
       }}
     >
       {newPassword && <Modal newPassword={newPassword} history={history} />}

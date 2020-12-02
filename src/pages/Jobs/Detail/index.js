@@ -20,10 +20,10 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import bgimg from '../../../assets/carteira.jpg';
-
 import PageHeader from '../../../components/Header';
 import PageFooter from '../../../components//Footer';
+import { useRouteMatch } from 'react-router-dom';
+import useRequest from '../../../hooks/useRequest';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   card: {
-    padding: "5rem",
+    padding: '5rem',
   },
 
   buscaContainer: {
@@ -100,6 +100,9 @@ export default function JobList({ history }) {
     setValue(event.target.value);
   };
 
+  const { params } = useRouteMatch();
+  const { data, loading } = useRequest(`jobs/${params.id}`);
+
   const handleJobsDetail = async () => {
     history.push('/jobs/detail');
   };
@@ -119,7 +122,7 @@ export default function JobList({ history }) {
               color="textSecondary"
               gutterBottom
             >
-              Full Stack Developer
+              {data.title}
             </Typography>
             <Typography color="textSecondary" gutterBottom>
               Empresa:

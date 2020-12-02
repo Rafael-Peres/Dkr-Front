@@ -13,7 +13,6 @@ import PageHeader from '../../../components/Header';
 import PageFooter from '../../../components/Footer';
 
 import loginImage from '../../../assets/loginIlustration.svg';
-import bgimg from '../../../assets/carteira.jpg';
 import { Login } from '../../../services/requests/auth';
 
 function Copyright() {

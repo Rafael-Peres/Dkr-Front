@@ -19,10 +19,9 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import bgimg from '../../../assets/carteira.jpg';
-
 import PageHeader from '../../../components/Header';
 import PageFooter from '../../../components//Footer';
+import useRequest from '../../../hooks/useRequest';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -98,6 +97,8 @@ export default function UserList({ history }) {
   const handleJobsDetail = async () => {
     history.push('/jobs/detail');
   };
+
+  const { data: candidates, loading } = useRequest('candidates');
   return (
     <div
       style={{
@@ -138,39 +139,10 @@ export default function UserList({ history }) {
         <Container className={classes.vagasContainer}>
           <Box>
             <ul className={classes.vagas}>
-              <li>
-                <h3>Estágio - Comunicação empresarial </h3>
-              </li>
-              <li>
-                <p>
-                  Minions ipsum wiiiii bappleees para tú me want bananaaa!
-                  Belloo! <br />
-                  Underweaaar. Hahaha ti aamoo! Me want bananaaa! Underweaaar
-                  chasy chasy hana dul sae po kass potatoooo pepete. Butt hana
-                  dul sae
-                </p>
-              </li>
-              <li>
-                <span>São Paulo</span>
-              </li>
-            </ul>
-
-            <ul className={classes.vagas}>
-              <li>
-                <h3>Estágio - Comunicação empresarial </h3>
-              </li>
-              <li>
-                <p>
-                  Minions ipsum wiiiii bappleees para tú me want bananaaa!
-                  Belloo! <br />
-                  Underweaaar. Hahaha ti aamoo! Me want bananaaa! Underweaaar
-                  chasy chasy hana dul sae po kass potatoooo pepete. Butt hana
-                  dul sae
-                </p>
-              </li>
-              <li>
-                <span>São Paulo</span>
-              </li>
+              {!loading &&
+                candidates.map(candidate => (
+                  <Paper key={candidates.id}>{candidate.user?.fullName}</Paper>
+                ))}
             </ul>
           </Box>
         </Container>

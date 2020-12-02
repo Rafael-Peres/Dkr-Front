@@ -17,7 +17,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import bgimg from '../../../assets/carteira.jpg';
 import { Card } from '../../../components/Card';
 
 function Copyright() {
@@ -113,7 +112,6 @@ export default function SignUp({ history }) {
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container component="main" maxWidth="lg">

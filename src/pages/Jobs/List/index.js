@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import {
@@ -13,16 +13,17 @@ import {
   FormLabel,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import bgimg from '../../../assets/carteira.jpg';
-
 import PageHeader from '../../../components/Header';
 import PageFooter from '../../../components//Footer';
+import { getJobs } from '../../../services/requests/jobs';
+import states from '../../../utils/states';
+import useRequest from '../../../hooks/useRequest';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -74,9 +75,11 @@ const useStyles = makeStyles(theme => ({
 
   vagasContainer: {
     display: 'flex',
-    alignItems: 'center',
     marginTop: '50px',
     marginBottom: '50px',
+  },
+  resultado: {
+    flex: 1,
   },
 
   vagas: {
@@ -84,13 +87,17 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     listStyle: 'none',
   },
+  vaga: {
+    minHeight: 140,
+    margin: '.5rem 0',
+  },
 }));
 
 export default function JobList({ history }) {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState();
-
+  const [value, setValue] = useState();
+  const [params, setParams] = useState({});
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -98,6 +105,15 @@ export default function JobList({ history }) {
   const handleJobsDetail = async () => {
     history.push('/jobs/detail');
   };
+
+  const { data: jobs, loading, error } = useRequest(
+    Object.keys(params).length ? 'search/jobs' : 'jobs',
+    params
+  );
+
+  function showDetail(id) {
+    history.push(`/jobs/detail/${id}`);
+  }
   return (
     <div
       style={{
@@ -119,6 +135,7 @@ export default function JobList({ history }) {
               inputProps={{
                 'aria-label': 'Digite um cargo, empresa e/ou localização',
               }}
+              onChange={e => setParams({ ...params, search: e.target.value })}
             />
             <IconButton
               type="submit"
@@ -143,21 +160,20 @@ export default function JobList({ history }) {
               </Typography>
               <FormControl component="fieldset">
                 <RadioGroup aria-label="gender" name="gender1" value={value}>
-                  <FormControlLabel
-                    value="Sao Paulo"
-                    control={<Radio />}
-                    label="São Paulo"
-                  />
-                  <FormControlLabel
-                    value="Pernambuco"
-                    control={<Radio />}
-                    label="Pernambuco"
-                  />
-                  <FormControlLabel
-                    value="Rio de Janeiro"
-                    control={<Radio />}
-                    label="Rio de Janeiro"
-                  />
+                  {states
+                    .filter((_, i) => i < 5)
+                    .map(state => (
+                      <FormControlLabel
+                        key={state.value}
+                        value={state.value}
+                        control={<Radio />}
+                        checked={params.search === state.value}
+                        onChange={() =>
+                          setParams({ ...params, search: state.value })
+                        }
+                        label={state.label}
+                      />
+                    ))}
                 </RadioGroup>
               </FormControl>
             </Box>
@@ -180,41 +196,26 @@ export default function JobList({ history }) {
             </Box>
           </Paper>
 
-          <Box>
+          <Box className={classes.resultado}>
             <ul className={classes.vagas}>
-              <li>
-                <h3>Estágio - Comunicação empresarial </h3>
-              </li>
-              <li>
-                <p>
-                  Minions ipsum wiiiii bappleees para tú me want bananaaa!
-                  Belloo! <br />
-                  Underweaaar. Hahaha ti aamoo! Me want bananaaa! Underweaaar
-                  chasy chasy hana dul sae po kass potatoooo pepete. Butt hana
-                  dul sae
-                </p>
-              </li>
-              <li>
-                <span>São Paulo</span>
-              </li>
-            </ul>
-
-            <ul className={classes.vagas}>
-              <li>
-                <h3>Estágio - Comunicação empresarial </h3>
-              </li>
-              <li>
-                <p>
-                  Minions ipsum wiiiii bappleees para tú me want bananaaa!
-                  Belloo! <br />
-                  Underweaaar. Hahaha ti aamoo! Me want bananaaa! Underweaaar
-                  chasy chasy hana dul sae po kass potatoooo pepete. Butt hana
-                  dul sae
-                </p>
-              </li>
-              <li>
-                <span>São Paulo</span>
-              </li>
+              {loading && (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CircularProgress size={120} />
+                </div>
+              )}
+              {error && <div>Erro ao buscar jobs: {error}</div>}
+              {!loading &&
+                jobs?.map(job => (
+                  <Paper className={classes.vaga} key={job.id}>
+                    <h1 onClick={() => showDetail(job.id)}>{job.title}</h1>
+                  </Paper>
+                ))}
             </ul>
           </Box>
         </Container>

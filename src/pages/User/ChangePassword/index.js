@@ -8,7 +8,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import bgimg from '../../../assets/carteira.jpg';
 
 function Copyright() {
   return (
@@ -61,7 +60,6 @@ export default function SignIn() {
         alignItems: 'center',
         flexDirection: 'column',
         backgroundSize: 'cover',
-        backgroundImage: `url(${bgimg})`,
       }}
     >
       <Container
