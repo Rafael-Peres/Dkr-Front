@@ -11,6 +11,7 @@ import Curriculum from '../pages/User/Curriculum';
 import RegisterJobs from '../pages/Jobs/Register';
 import ListJobs from '../pages/Jobs/List';
 import DetailJobs from '../pages/Jobs/Detail';
+import ListUsers from '../pages/User/List';
 
 import { isAuthenticated } from '../services/auth';
 
@@ -37,6 +38,7 @@ const Routes = () => (
       <Route exact path="/jobs/register" component={RegisterJobs} />
       <Route exact path="/jobs/detail" component={DetailJobs} />
       <Route path="/jobs" component={ListJobs} />
+      <Route path="/candidates" component={ListUsers} />
       <Route path="/curriculum" component={Curriculum} />
       <Route path="/profile" component={Profile} />
       <Route path="/forgot" component={Forgot} />

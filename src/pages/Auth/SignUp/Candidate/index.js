@@ -40,7 +40,8 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      Copyright © Seinn - Selection e Innovation {new Date().getFullYear()}.
+      Copyright © Reseinn - Recruitment, Selection e Innovation{' '}
+      {new Date().getFullYear()}.
     </Typography>
   );
 }

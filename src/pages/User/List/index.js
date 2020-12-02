@@ -86,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function JobList({ history }) {
+export default function UserList({ history }) {
   const classes = useStyles();
 
   const [value, setValue] = React.useState();
@@ -109,15 +109,15 @@ export default function JobList({ history }) {
         <Grid container spacing={2} className={classes.buscaContainer}>
           <Grid item xs={12} md={12} lg={12}>
             <Typography className={classes.titulo} component="h1" variant="h5">
-              Encontre o emprego perfeito para você.
+              Encontre o candidato perfeito pra sua empresa.
             </Typography>
           </Grid>
           <Grid item xs={12} md={12} lg={12} className={classes.root}>
             <InputBase
               className={classes.input}
-              placeholder="  Digite um cargo, empresa e/ou localização"
+              placeholder="  Digite um cargo"
               inputProps={{
-                'aria-label': 'Digite um cargo, empresa e/ou localização',
+                'aria-label': 'Digite um cargo',
               }}
             />
             <IconButton
@@ -136,50 +136,6 @@ export default function JobList({ history }) {
         </Grid>
 
         <Container className={classes.vagasContainer}>
-          <Paper component={Box} width="30%" p={4} mx="auto">
-            <Box component="form" className={classes.formCidade}>
-              <Typography component="h3" variant="h5">
-                Pesquisar por cidade
-              </Typography>
-              <FormControl component="fieldset">
-                <RadioGroup aria-label="gender" name="gender1" value={value}>
-                  <FormControlLabel
-                    value="Sao Paulo"
-                    control={<Radio />}
-                    label="São Paulo"
-                  />
-                  <FormControlLabel
-                    value="Pernambuco"
-                    control={<Radio />}
-                    label="Pernambuco"
-                  />
-                  <FormControlLabel
-                    value="Rio de Janeiro"
-                    control={<Radio />}
-                    label="Rio de Janeiro"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Box>
-
-            <Box component="form" className={classes.formArea}>
-              <Typography component="h3" variant="h5">
-                Pesquisar por área
-              </Typography>
-              <FormControl component="fieldset">
-                <RadioGroup aria-label="gender" name="gender1" value={value}>
-                  <FormControlLabel
-                    value="Administracao"
-                    control={<Radio />}
-                    label="Administração"
-                  />
-                  <FormControlLabel value="TI" control={<Radio />} label="TI" />
-                  <FormControlLabel value="RH" control={<Radio />} label="RH" />
-                </RadioGroup>
-              </FormControl>
-            </Box>
-          </Paper>
-
           <Box>
             <ul className={classes.vagas}>
               <li>

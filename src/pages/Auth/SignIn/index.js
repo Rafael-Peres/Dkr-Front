@@ -27,7 +27,8 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      Copyright © Seinn - Selection e Innovation {new Date().getFullYear()}.
+      Copyright © Reseinn - Recruitment, Selection e Innovation{' '}
+      {new Date().getFullYear()}.
     </Typography>
   );
 }
@@ -44,7 +45,6 @@ const useStyles = makeStyles(theme => ({
     // justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-
   },
   form: {
     // width: '20vw', // Fix IE 11 issue.
@@ -67,10 +67,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: ' #3f64e5',
   },
 
-  acessarConta: {
-
-  }
-
+  acessarConta: {},
 }));
 
 export default function SignIn({ history }) {
@@ -193,7 +190,11 @@ export default function SignIn({ history }) {
             </Grid>
           </form>
           <div className={classes.imageLogin}>
-            <img className={classes.image} src={loginImage} alt="Logo da aplicação" />
+            <img
+              className={classes.image}
+              src={loginImage}
+              alt="Logo da aplicação"
+            />
           </div>
         </div>
       </Container>
@@ -201,6 +202,6 @@ export default function SignIn({ history }) {
         <Copyright />
       </Box> */}
       <PageFooter />
-    </div >
+    </div>
   );
 }

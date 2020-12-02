@@ -22,7 +22,7 @@ function Copyright() {
       }}
     >
       {'Copyright © '}
-      Seinn - Selection e Innovation {new Date().getFullYear()}.
+      Reseinn - Recruitment, Selection e Innovation {new Date().getFullYear()}.
     </Typography>
   );
 }

@@ -30,7 +30,7 @@ function Copyright() {
       }}
     >
       {'Copyright © '}
-      Seinn - Selection e Innovation {new Date().getFullYear()}.
+      Reseinn - Recruitment, Selection e Innovation {new Date().getFullYear()}.
     </Typography>
   );
 }
@@ -46,14 +46,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     // flexDirection: 'column',
     // alignItems: 'center',
-
   },
   form: {
     width: '50%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   imageLogin: {
-    width: '50%'
+    width: '50%',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -86,7 +85,7 @@ export default function SignUp() {
       }}
     >
       <PageHeader />
-      <Container component="main" maxWidth="lg" >
+      <Container component="main" maxWidth="lg">
         <Grid
           style={{
             display: 'flex',
@@ -101,9 +100,8 @@ export default function SignUp() {
               <CssBaseline />
               <Typography component="h1" variant="h5">
                 Perfil
-                </Typography>
+              </Typography>
               <div className={classes.paper}>
-
                 <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={12} lg={12}>
@@ -121,7 +119,6 @@ export default function SignUp() {
 
                     <Grid item xs={12} md={12} lg={12}>
                       <TextField
-
                         autoComplete="fname"
                         name="fullName"
                         variant="outlined"
@@ -147,7 +144,6 @@ export default function SignUp() {
 
                     <Grid item xs={12} md={12} lg={12}>
                       <TextField
-
                         autoComplete="birthDate"
                         name="birthDate"
                         variant="outlined"
@@ -173,7 +169,6 @@ export default function SignUp() {
                         autoComplete="current-password"
                       />
                     </Grid>
-
 
                     <Grid item xs={12} md={12} lg={12}>
                       <TextField
@@ -230,16 +225,13 @@ export default function SignUp() {
                     backgroundSize: 'cover',
                     backgroundImage: `url(${loginImage})`,
                   }}
-
-                >
-
-                </Container>
+                ></Container>
               </div>
             </Card>
           </Grid>
         </Grid>
       </Container>
       <PageFooter />
-    </div >
+    </div>
   );
 }

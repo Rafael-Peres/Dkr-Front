@@ -23,7 +23,7 @@ function Copyright() {
         color: '#4F4F4F',
       }}
     >
-      {'Copyright © '}- Seinn - Selection e Innovation{' '}
+      {'Copyright © '}- Reseinn - Recruitment, Selection e Innovation{' '}
       {new Date().getFullYear()}.
     </Typography>
   );
