@@ -56,7 +56,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#fff',
     width: '50%',
     borderRadius: '0.5rem',
-    marginLeft: '70px',
   },
 
   iconButton: {
@@ -74,19 +73,13 @@ const useStyles = makeStyles(theme => ({
   },
 
   usersContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-
-    alignItems: 'center',
     marginTop: '50px',
     marginBottom: '50px',
-    width: '500px',
     overflow: 'hidden',
   },
 
   users: {
-    display: 'flex',
-    color: 'black',
+    color: '#8c8c8c',
     textDecoration: 'none',
     listStyle: 'none',
     padding: '10px',
@@ -99,8 +92,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   paperJobs: {
-    padding: '10px',
-    margin: '10px',
+    padding: '20px',
+    margin: '20px',
+
   },
 }));
 
@@ -122,7 +116,7 @@ export default function UserList({ history }) {
   return (
     <div
       style={{
-        height: '100%',
+
       }}
     >
       <PageHeader />
@@ -169,6 +163,7 @@ export default function UserList({ history }) {
         </Container>
       </Grid>
       <PageFooter />
+
     </div>
   );
 }
