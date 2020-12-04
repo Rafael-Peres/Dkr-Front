@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import Typography from '@material-ui/core/Typography';
 import {
   Container,
@@ -83,11 +85,12 @@ const useStyles = makeStyles(theme => ({
   },
 
   vagas: {
-    color: 'black',
+    color: 'red',
     textDecoration: 'none',
     listStyle: 'none',
   },
   vaga: {
+    padding: '25px 15px',
     minHeight: 140,
     margin: '.5rem 0',
   },
@@ -137,13 +140,7 @@ export default function JobList({ history }) {
               }}
               onChange={e => setParams({ ...params, search: e.target.value })}
             />
-            <IconButton
-              type="submit"
-              className={classes.iconButton}
-              aria-label="search"
-            >
-              <SearchIcon />
-            </IconButton>
+
             <IconButton
               color="primary"
               className={classes.iconButton}
@@ -156,12 +153,12 @@ export default function JobList({ history }) {
           <Paper component={Box} width="30%" p={4} mx="auto">
             <Box component="form" className={classes.formCidade}>
               <Typography component="h3" variant="h5">
-                Pesquisar por cidade
+                Pesquisar por estado
               </Typography>
               <FormControl component="fieldset">
                 <RadioGroup aria-label="gender" name="gender1" value={value}>
                   {states
-                    .filter((_, i) => i < 5)
+                    .filter((_, i) => i < 26)
                     .map(state => (
                       <FormControlLabel
                         key={state.value}
@@ -174,23 +171,6 @@ export default function JobList({ history }) {
                         label={state.label}
                       />
                     ))}
-                </RadioGroup>
-              </FormControl>
-            </Box>
-
-            <Box component="form" className={classes.formArea}>
-              <Typography component="h3" variant="h5">
-                Pesquisar por área
-              </Typography>
-              <FormControl component="fieldset">
-                <RadioGroup aria-label="gender" name="gender1" value={value}>
-                  <FormControlLabel
-                    value="Administracao"
-                    control={<Radio />}
-                    label="Administração"
-                  />
-                  <FormControlLabel value="TI" control={<Radio />} label="TI" />
-                  <FormControlLabel value="RH" control={<Radio />} label="RH" />
                 </RadioGroup>
               </FormControl>
             </Box>
@@ -213,7 +193,15 @@ export default function JobList({ history }) {
               {!loading &&
                 jobs?.map(job => (
                   <Paper className={classes.vaga} key={job.id}>
-                    <h1 onClick={() => showDetail(job.id)}>{job.title}</h1>
+                    <h1
+                      onClick={() => showDetail(job.id)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {job.title}
+                    </h1>
+                    <p>{job.description}</p>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} />
+                    <span> {job.state}</span>
                   </Paper>
                 ))}
             </ul>

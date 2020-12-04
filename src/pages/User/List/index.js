@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Card, Hidden } from '@material-ui/core';
+
 import {
   Container,
   Box,
@@ -71,34 +73,52 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px',
   },
 
-  vagasContainer: {
+  usersContainer: {
     display: 'flex',
+    justifyContent: 'center',
+
     alignItems: 'center',
     marginTop: '50px',
     marginBottom: '50px',
+    width: '500px',
+    overflow: 'hidden',
   },
 
-  vagas: {
+  users: {
+    display: 'flex',
     color: 'black',
     textDecoration: 'none',
     listStyle: 'none',
+    padding: '10px',
+  },
+
+  containerJobs: {
+    // display: 'flex',
+    // alignContent: 'center',
+    // justifyContent: 'center',
+  },
+
+  paperJobs: {
+    padding: '10px',
+    margin: '10px',
   },
 }));
 
 export default function UserList({ history }) {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState();
+  const [value, setValue] = useState();
+  const [params, setParams] = useState({});
 
   const handleChange = event => {
     setValue(event.target.value);
   };
 
-  const handleJobsDetail = async () => {
-    history.push('/jobs/detail');
-  };
+  const { data: candidates, loading } = useRequest(
+    Object.keys(params).length ? 'search/candidates' : 'candidates',
+    params
+  );
 
-  const { data: candidates, loading } = useRequest('candidates');
   return (
     <div
       style={{
@@ -120,14 +140,9 @@ export default function UserList({ history }) {
               inputProps={{
                 'aria-label': 'Digite um cargo',
               }}
+              onChange={e => setParams({ ...params, search: e.target.value })}
             />
-            <IconButton
-              type="submit"
-              className={classes.iconButton}
-              aria-label="search"
-            >
-              <SearchIcon />
-            </IconButton>
+
             <IconButton
               color="primary"
               className={classes.iconButton}
@@ -136,12 +151,18 @@ export default function UserList({ history }) {
           </Grid>
         </Grid>
 
-        <Container className={classes.vagasContainer}>
-          <Box>
-            <ul className={classes.vagas}>
+        <Container className={classes.usersContainer}>
+          <Box className={classes.containerJobs}>
+            <ul className={classes.users}>
               {!loading &&
-                candidates.map(candidate => (
-                  <Paper key={candidates.id}>{candidate.user?.fullName}</Paper>
+                candidates?.map(candidate => (
+                  <Paper className={classes.paperJobs} key={candidate.id}>
+                    <h1 style={{ cursor: 'pointer' }}>
+                      {candidate.user?.fullName}
+                    </h1>
+                    <h2>{candidate.profession}</h2>
+                    <p>{candidate.levelTraining}</p>
+                  </Paper>
                 ))}
             </ul>
           </Box>

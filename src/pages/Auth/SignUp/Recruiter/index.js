@@ -23,6 +23,8 @@ import loginImage from '../../../../assets/loginIlustration.svg';
 
 import PageHeader from '../../../../components/Header';
 import PageFooter from '../../../../components/Footer';
+import states from '../../../../utils/states';
+import genders from '../../../../utils/genders';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -108,7 +110,7 @@ export default function SignUpRecruiter({ history }) {
         email,
         document,
         birthDate: '2014-08-18T21:11:54',
-        gender: 'Masculino',
+        gender,
         state: stateUF,
         city,
         recruiterId: recruiter.data.id,
@@ -257,20 +259,6 @@ export default function SignUpRecruiter({ history }) {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={12}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Confirmar senha"
-                        type="confirmPassword"
-                        id="confirmPassword"
-                        autoComplete="current-password"
-                        onChange={e => setPassword(e.target.value)}
-                      />
-                    </Grid>
-
                     <Grid item xs={12} md={6} lg={6}>
                       <FormControl
                         variant="outlined"
@@ -289,10 +277,14 @@ export default function SignUpRecruiter({ history }) {
                             id: 'gender',
                           }}
                         >
-                          <option value="   " />
-                          <option value={10}>Masculino</option>
-                          <option value={20}>Feminino</option>
-                          <option value={30}>Outros</option>
+                          <option value=" " selected disabled>
+                            Selecione
+                          </option>
+                          {genders.map(state => (
+                            <option key={state.value} value={state.value}>
+                              {state.label}
+                            </option>
+                          ))}
                         </Select>
                       </FormControl>
                     </Grid>
@@ -329,33 +321,14 @@ export default function SignUpRecruiter({ history }) {
                             id: 'state',
                           }}
                         >
-                          <option value="   " />
-                          <option value={1}>Acre</option>
-                          <option value={2}>Alagoas</option>
-                          <option value={3}>Amazonas</option>
-                          <option value={4}>Bahia</option>
-                          <option value={5}>Ceará</option>
-                          <option value={6}>Distrito Federal</option>
-                          <option value={7}>Espírito Santo</option>
-                          <option value={8}>Goiás</option>
-                          <option value={9}>Maranhão</option>
-                          <option value={10}>Mato Grosso</option>
-                          <option value={11}>Mato Grosso Do Sul</option>
-                          <option value={12}>Minas Gerais</option>
-                          <option value={13}>Pará</option>
-                          <option value={14}>Paraíba</option>
-                          <option value={15}>Paraná</option>
-                          <option value={16}>Pernanbuco</option>
-                          <option value={17}>Piauí</option>
-                          <option value={18}>Rio de Janeiro</option>
-                          <option value={19}>Rio Grande do Norte</option>
-                          <option value={20}>Rio Grande do Sul</option>
-                          <option value={21}>Rondônia</option>
-                          <option value={22}>Roraima</option>
-                          <option value={23}>Santa Catarina</option>
-                          <option value={24}>São Paulo</option>
-                          <option value={25}>Sergipe</option>
-                          <option value={26}>Tocantins</option>
+                          <option value=" " selected disabled>
+                            Selecione
+                          </option>
+                          {states.map(gender => (
+                            <option key={gender.value} value={gender.value}>
+                              {gender.label}
+                            </option>
+                          ))}
                         </Select>
                       </FormControl>
                     </Grid>
@@ -380,6 +353,7 @@ export default function SignUpRecruiter({ history }) {
                         aria-label="maximum height"
                         placeholder="Fale um pouco sobre você"
                         defaultValue=""
+                        onChange={e => setPresentationLetter(e.target.value)}
                       />
                     </Grid>
                   </Grid>

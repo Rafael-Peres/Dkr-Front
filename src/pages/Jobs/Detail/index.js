@@ -116,52 +116,36 @@ export default function JobList({ history }) {
       <Grid>
         <Container className={classes.vagasContainer}>
           <Card className={classes.card}>
-            <Typography
-              component="h1"
-              variant="h5"
-              color="textSecondary"
-              gutterBottom
-            >
+            <Typography component="h1" variant="h5" gutterBottom>
               {data.title}
             </Typography>
+            <Typography gutterBottom>Empresa:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              Empresa:
-            </Typography>
-            <Typography color="textSecondary" gutterBottom>
-              Eniac
+              {data.company}
             </Typography>
             <Typography>Beneficios:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              <ul>
-                <li>VT</li>
-                <li>VR</li>
-                <li>Convênio Médico</li>
-              </ul>
+              {data.benefits}
             </Typography>
-            <Typography>Salário</Typography>
+            <Typography>Salário:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              R$ 5.000,00
+              R$ {data.salary}
             </Typography>
             <Typography>Horário de trabalho:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              08:00 às 17:00, seg. a sex. Home office 1x por semana.
+              {data.workSchedule}
             </Typography>
             <Typography>Cidade:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              Itaquaquecetuba
+              {data.city}
             </Typography>
             <Typography>Estado:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              São Paulo
+              {data.state}
             </Typography>
             <Typography>Descrição:</Typography>
             <Typography color="textSecondary" gutterBottom>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
+              {data.description}
             </Typography>
           </Card>
         </Container>

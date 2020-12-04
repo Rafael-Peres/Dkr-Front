@@ -9,14 +9,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Card } from '../../../components/Card';
-import { storeCurriculum } from '../../../services/requests/curriculums';
+import { Card } from '../../../../components/Card';
+import { storeCurriculum } from '../../../../services/requests/curriculums';
 import { TextareaAutosize } from '@material-ui/core';
 
-import rhImage from '../../../assets/RHIlustration.svg';
+import rhImage from '../../../../assets/RHIlustration.svg';
 
-import PageHeader from '../../../components/Header';
-import PageFooter from '../../../components/Footer';
+import PageHeader from '../../../../components/Header';
+import PageFooter from '../../../../components/Footer';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
