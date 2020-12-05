@@ -17,7 +17,9 @@ class PageFooter extends Component {
           <div className="pagefooter-menu">
             <ul>
               <li>
-                <Link style={{ cursor: 'pointer' }}>Vagas</Link>
+                <Link to="/jobs" style={{ cursor: 'pointer' }}>
+                  Vagas
+                </Link>
               </li>
               <li>
                 <Link style={{ cursor: 'pointer' }}>Sobre</Link>
@@ -29,7 +31,9 @@ class PageFooter extends Component {
                 <Link style={{ cursor: 'pointer' }}>Contato</Link>
               </li>
               <li>
-                <Link style={{ cursor: 'pointer' }}>Login</Link>
+                <Link to="/signin" style={{ cursor: 'pointer' }}>
+                  Login
+                </Link>
               </li>
               <li>
                 <Link style={{ cursor: 'pointer' }}>Termos de uso</Link>

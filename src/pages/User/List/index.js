@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Card, Hidden } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 import {
   Container,
@@ -94,7 +96,6 @@ const useStyles = makeStyles(theme => ({
   paperJobs: {
     padding: '20px',
     margin: '20px',
-
   },
 }));
 
@@ -113,12 +114,12 @@ export default function UserList({ history }) {
     params
   );
 
-  return (
-    <div
-      style={{
+  function showDetail(id) {
+    history.push(`/curriculum/detail/${id}`);
+  }
 
-      }}
-    >
+  return (
+    <div style={{}}>
       <PageHeader />
       <Grid>
         <Grid container spacing={2} className={classes.buscaContainer}>
@@ -151,11 +152,17 @@ export default function UserList({ history }) {
               {!loading &&
                 candidates?.map(candidate => (
                   <Paper className={classes.paperJobs} key={candidate.id}>
-                    <h1 style={{ cursor: 'pointer' }}>
+                    <h1
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => showDetail(candidate.id)}
+                    >
                       {candidate.user?.fullName}
                     </h1>
-                    <h2>{candidate.profession}</h2>
-                    <p>{candidate.levelTraining}</p>
+
+                    <p>Profissão: {candidate.profession}</p>
+                    <p>Nivel: {candidate.levelTraining}</p>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} />
+                    <span> {candidate.user?.state}</span>
                   </Paper>
                 ))}
             </ul>
@@ -163,7 +170,6 @@ export default function UserList({ history }) {
         </Container>
       </Grid>
       <PageFooter />
-
     </div>
   );
 }

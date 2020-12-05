@@ -8,6 +8,7 @@ import Forgot from '../pages/Auth/Forgot';
 import ChangePassword from '../pages/User/ChangePassword';
 import Profile from '../pages/User/Profile';
 import Curriculum from '../pages/User/Curriculum/Register';
+import DetailCurriculum from '../pages/User/Curriculum/Detail';
 import RegisterJobs from '../pages/Jobs/Register';
 import ListJobs from '../pages/Jobs/List';
 import DetailJobs from '../pages/Jobs/Detail';
@@ -37,6 +38,7 @@ const Routes = () => (
       <Route exact path="/signup/recruiter" component={RegisterRecruiters} />
       <Route exact path="/jobs/register" component={RegisterJobs} />
       <Route exact path="/jobs/detail/:id" component={DetailJobs} />
+      <Route exact path="/curriculum/detail/:id" component={DetailCurriculum} />
       <Route path="/jobs" component={ListJobs} />
       <Route path="/candidates" component={UserList} />
       <Route path="/curriculum" component={Curriculum} />

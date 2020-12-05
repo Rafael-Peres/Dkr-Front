@@ -1,9 +1,12 @@
-import api from "../../api";
+import api from '../../api';
 
-export const getCandidates = async () => {
-  return await api.get(`/candidates`);
+export const getCandidates = async (params = {}) => {
+  return await api({
+    method: 'GET',
+    url: Object.keys(params).length ? 'search/candidates' : 'candidates',
+    params,
+  });
 };
-
 export const getCandidate = async ({ id }) => {
   return await api.get(`/candidates/${id}`);
 };
